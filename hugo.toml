@@ -1,4 +1,4 @@
-baseURL = 'https://markpoko.dev/'
+baseURL = 'https://pokom.github.io/'
 languageCode = 'en-us'
 title = 'Mark Poko'
 theme = 'typo'

@@ -1,9 +1,9 @@
-[submodule "themes/re-terminal"]
-	path = themes/re-terminal
-	url = https://github.com/mirus-ua/hugo-theme-re-terminal.git
-[submodule "themes/cactus"]
-	path = themes/cactus
-	url = https://github.com/monkeyWzr/hugo-theme-cactus.git
 [submodule "themes/smol"]
-	path = themes/smol
-	url = https://github.com/colorchestra/smol
+path = themes/smol
+url = https://github.com/colorchestra/smol
+[submodule "themes/stack"]
+	path = themes/stack
+	url = https://github.com/CaiJimmy/hugo-theme-stack
+[submodule "themes/typo"]
+	path = themes/typo
+	url = https://github.com/tomfran/typo.git

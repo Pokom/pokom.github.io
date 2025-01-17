@@ -1,45 +1,60 @@
 baseURL = 'https://markpoko.dev/'
 languageCode = 'en-us'
 title = 'Mark Poko'
-theme = 'smol'
+theme = 'typo'
 
-# Parameters
+[taxonomies]
+tag = 'tags'
+
 [params]
-    subtitle = "WHy hello there!"
-    dateFmt = "02.01.2006 15:04"
+# Meta description
+description = "A Tech Blog"
 
-# Header
-[menu]
-  [[menu.main]]
-        identifier = "posts"
-        name = "Posts"
-        url = "/posts/"
-        weight = 1
+# Appearance settings
+theme = 'auto'
+colorPalette = 'default'
+hideHeader = false
 
-  [[menu.main]]
-        identifier = "categories"
-        name = "Categories"
-        url = "/categories/"
-        weight = 2
+# Intro on main page, content is markdown
+homeIntroTitle = ''
+homeIntroContent = """
+"""
 
-  [[menu.main]]
-        identifier = "tags"
-        name = "Tags"
-        url = "/tags/"
-        weight = 3
+# Collection to display on home
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
 
-# Footer
-  [[menu.footer]]
-        name = "Github"
-        url = "https://github.com/example"
-        weight = 1
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = '2 Jan 2006'
 
-    [[menu.footer]]
-        name = "Mastodon"
-        url = "https://example.com/@user"
-        weight = 2
+# Breadcrumbs
+breadcrumbs = true
 
-    [[menu.footer]]
-        name = "Imprint"
-        url = "/imprint"
-        weight = 3
+# Social icons
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/markpoko/"
+
+[[params.social]]
+name = "github"
+url = "https://github.com/pokom"
+
+# Main menu pages
+[[params.menu]]
+name = "home"
+url = "/"
+
+[[params.menu]]
+name = "posts"
+url = "/posts"
+
+[[params.menu]]
+name = "about"
+url = "/page/about"
+
+# Syntax highlight on code blocks
+[markup]
+[markup.highlight]
+style = 'algol'

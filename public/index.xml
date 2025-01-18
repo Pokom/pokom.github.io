@@ -6,8 +6,15 @@
     <description>Recent content in Home on Mark Poko</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Jan 2025 14:39:54 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jan 2025 22:36:07 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Squarespace</title>
+      <link>http://localhost:1313/posts/squarespace/</link>
+      <pubDate>Fri, 17 Jan 2025 22:36:07 -0500</pubDate>
+      <guid>http://localhost:1313/posts/squarespace/</guid>
+      <description>&lt;p&gt;I use squarespace for &lt;code&gt;markpoko.dev&lt;/code&gt;&amp;rsquo;s DNS records, though not by choice.&#xA;Up until 2024, I had used Google domains to handle my DNS thingy.&#xA;At the time it made sense as I was diving deep into learning GCP.&#xA;There was a nice integration between Cloud Run and Google Domains, making it trivial to expose services over a DNS entry.&#xA;As Google &lt;a href=&#34;https://killedbygoogle.com/&#34;&gt;does&lt;/a&gt;, the &lt;a href=&#34;https://9to5google.com/2023/06/15/google-domains-squarespace/&#34;&gt;project was shut down and sold&lt;/a&gt; off to Squarespace.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>About</title>
       <link>http://localhost:1313/page/about/</link>

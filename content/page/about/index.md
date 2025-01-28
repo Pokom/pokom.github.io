@@ -4,4 +4,6 @@ draft = false
 title = 'About'
 +++
 
-Hello, there!
+Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.
+Professionally, I worked at [Grafana Labs](https://grafana.com/) where I work on their cloud platform.
+I play music as well, mostly bass guitar now a days.

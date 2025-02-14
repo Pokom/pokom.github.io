@@ -1,6 +1,6 @@
 +++
 date = '2025-02-13T21:54:53-05:00'
-draft = true
+draft =false
 title = 'Local Board of Ed Meeting'
 +++
 

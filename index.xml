@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Mark Poko</title><link>https://pokom.github.io/</link><description>Recent content in Home on Mark Poko</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 13 Feb 2025 21:54:53 -0500</lastBuildDate><atom:link href="https://pokom.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Local Board of Ed Meeting</title><link>https://pokom.github.io/posts/local-board-of-ed-meeting/</link><pubDate>Thu, 13 Feb 2025 21:54:53 -0500</pubDate><guid>https://pokom.github.io/posts/local-board-of-ed-meeting/</guid><description>&lt;h1 class="heading" id="first-local-board-of-ed-meeting">
+ First Local Board of Ed Meeting
+ &lt;a href="#first-local-board-of-ed-meeting">#&lt;/a>
+&lt;/h1>
+&lt;p>I attended my first board of ed meeting and it was rather interesting.
+Like many communities in New Jersey, mine is dealing with another year of a budget deficit.
+The shortgage is making me want to become more informed as a citizen because I have a young daughter that will be going into the school systems in 2026.
+And what better time to get involved then during a crisis?!&lt;/p></description></item><item><title>Squarespace</title><link>https://pokom.github.io/posts/squarespace/</link><pubDate>Fri, 17 Jan 2025 22:36:07 -0500</pubDate><guid>https://pokom.github.io/posts/squarespace/</guid><description>&lt;p>I use squarespace for &lt;code>markpoko.dev&lt;/code>&amp;rsquo;s DNS records, though not by choice.
+Up until 2024, I had used Google domains to handle my DNS thingy.
+At the time it made sense as I was diving deep into learning GCP.
+There was a nice integration between Cloud Run and Google Domains, making it trivial to expose services over a DNS entry.
+As Google &lt;a href="https://killedbygoogle.com/">does&lt;/a>, the &lt;a href="https://9to5google.com/2023/06/15/google-domains-squarespace/">project was shut down and sold&lt;/a> off to Squarespace.&lt;/p></description></item><item><title>About</title><link>https://pokom.github.io/page/about/</link><pubDate>Fri, 17 Jan 2025 14:39:54 -0500</pubDate><guid>https://pokom.github.io/page/about/</guid><description>&lt;p>Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.
+Professionally, I worked at &lt;a href="https://grafana.com/">Grafana Labs&lt;/a> where I work on their cloud platform.
+I play music as well, mostly bass guitar now a days.&lt;/p></description></item><item><title>Hello World</title><link>https://pokom.github.io/posts/2025-01-17-hello-world/</link><pubDate>Fri, 17 Jan 2025 14:10:59 -0500</pubDate><guid>https://pokom.github.io/posts/2025-01-17-hello-world/</guid><description>&lt;p>Hello, world&lt;/p></description></item></channel></rss>

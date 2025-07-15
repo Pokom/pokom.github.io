@@ -5,5 +5,17 @@ It is built with [hugo](https://gohugo.io/) and currently using the [smol](https
 
 ## Building
 
-While I don't quite know why you'd be building my personal website, I know for a fact I'll forget how to do that.
+After cloning, you need to pull the submodules which contains the themes used by the website:
 
+```sh
+git submodule init
+git submodule update
+```
+
+Then you can run a dev server like so:
+
+```
+make dev
+```
+
+If you do not have make installed, it's easy enough to look at the `Makefile` and find the associated command.

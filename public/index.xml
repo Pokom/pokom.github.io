@@ -6,8 +6,22 @@
     <description>Recent content in Home on Mark Poko</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Jan 2025 22:36:07 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jul 2025 20:57:06 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tyranny of Pencil and Paper</title>
+      <link>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</link>
+      <pubDate>Mon, 14 Jul 2025 20:57:06 -0400</pubDate>
+      <guid>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</guid>
+      <description>&lt;p&gt;The recent news of Windsurfer being aqcuired by &lt;del&gt;OpenAI&lt;/del&gt; Cognition really got me thinking about the way I work.&#xA;Well, that&amp;rsquo;s not entirely true, because I&amp;rsquo;ve been thinking about the way I work since ChatGPT was released to the wild.&#xA;I was(and still am) skeptical that this is the next major revolution in technology, but the impact on my personal ability to write and maintain software is clear.&#xA;From the early days of ChatGPT and Copilot, I&amp;rsquo;ve turned to these tools when I was stuck on problems.&#xA;The tools have either provided a path to getting unblocked &lt;em&gt;or&lt;/em&gt; got me so frustrated that I decided I was taking the wrong path.&#xA;End result was making progress on whatever I was working on.&#xA;So much effort is being put into how these tools are redefining the workforce and productivity.&#xA;But my day to day still appears to be very similar to how it was before, I just have another tool to use.&#xA;I still spend a good amount of my time thinking slowly and deliberately with pencil and paper.&#xA;My anxiety is creeping in though and I&amp;rsquo;m wondering if my habits of thinking on paper is going to hold me back?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Faro</title>
+      <link>http://localhost:1313/posts/faro/</link>
+      <pubDate>Mon, 27 Jan 2025 21:09:42 -0500</pubDate>
+      <guid>http://localhost:1313/posts/faro/</guid>
+      <description>&lt;h1 class=&#34;heading&#34; id=&#34;faro&#34;&gt;&#xD;&#xA;  Faro&#xD;&#xA;  &lt;a href=&#34;#faro&#34;&gt;#&lt;/a&gt;&#xD;&#xA;&lt;/h1&gt;&#xD;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Disclaimer!&#xA;I work at Grafana Labs, but this is not endorsed.&#xA;I&amp;rsquo;m writing this in my personal time as I explore Faro and see how I can use it with hugo.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;I want to monitor traffic to this site, but to do it in a way that has some semblance of privacy.&#xA;In the past I&amp;rsquo;ve used Google Analytics, but feel this pulls much more data then I&amp;rsquo;m comfortable with.&#xA;It&amp;rsquo;s a powerful tool that I&amp;rsquo;ve used personally and professionaly, but for the most part I do not need most of the features.&#xA;I want to be able to know the following&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Squarespace</title>
       <link>http://localhost:1313/posts/squarespace/</link>
@@ -20,7 +34,7 @@
       <link>http://localhost:1313/page/about/</link>
       <pubDate>Fri, 17 Jan 2025 14:39:54 -0500</pubDate>
       <guid>http://localhost:1313/page/about/</guid>
-      <description>&lt;p&gt;Hello, there!&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.&#xA;Professionally, I worked at &lt;a href=&#34;https://grafana.com/&#34;&gt;Grafana Labs&lt;/a&gt; where I work on their cloud platform.&#xA;I play music as well, mostly bass guitar now a days.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World</title>

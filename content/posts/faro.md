@@ -4,13 +4,12 @@ draft = false
 title = 'Faro'
 +++
 
-# Faro
+> **Disclaimer**! I work at Grafana Labs and am writing this in my personal time to explore the product
 
-> Disclaimer!
-> I work at Grafana Labs and am writing this in my personal time to explore the product
+I want to monitor traffic to this site and do it in a way that maintains privacy.
+In the past I've used Google Analytics, which I'm opting not to use due to the amount of data collected.
 
-I want to monitor traffic to this site, but to do it in a way that has some semblance of privacy.
-In the past I've used Google Analytics, which I'm opting not to due to the amount of data collected.
+Here are some of the things I'd like to track:
 
 - How many users visited my website, broken down by page
 - How long does a user stay?
@@ -74,11 +73,16 @@ After adding the Faro script to the header, deploy your changes and you should s
 
 **Note**: If you have ublock origin, or anything else that blocks tracking, you should disable that for the site :grimacing:
 
-## LLM's
+## Recap
 
-Eventually I'll create a dedicated section this.
-None of the writing is done by an LLM.
-It's all done the old fashion way: fingers on keyboard.
+It was fairly easy to get this blog instrumented with Faro.
+Now I need to explore the data collected and see how I can answer the questions posed at the top.
+
+## LLM usage notice
+
+I wrote all of the content of this article.
+At no point did I use an LLM to formulate any of the paragraphs.
+
 I did get stuck on how to figure out how to edit a theme in hugo.
 At first it recommended that I edit the submodule directly, and I had to remind it that is not good practice.
 Other then that, Grafana documentation got and my own thought contributed to the rest.

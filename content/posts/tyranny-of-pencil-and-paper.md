@@ -4,16 +4,30 @@ draft = true
 title = 'Tyranny of Pencil and Paper'
 +++
 
-The recent news of Windsurfer being aqcuired by ~OpenAI~ Cognition really got me thinking about the way I work.
-Well, that's not entirely true, because I've been thinking about the way I work since ChatGPT was released to the wild.
-I was(and still am) skeptical that this is the next major revolution in technology, but the impact on my personal ability to write and maintain software is clear.
-From the early days of ChatGPT and Copilot, I've turned to these tools when I was stuck on problems.
-The tools have either provided a path to getting unblocked _or_ got me so frustrated that I decided I was taking the wrong path.
-End result was making progress on whatever I was working on.
-So much effort is being put into how these tools are redefining the workforce and productivity.
-But my day to day still appears to be very similar to how it was before, I just have another tool to use.
-I still spend a good amount of my time thinking slowly and deliberately with pencil and paper.
-My anxiety is creeping in though and I'm wondering if my habits of thinking on paper is going to hold me back?
+Windsurfer being aqcuired by ~OpenAI~ Cognition is making me reconsider the way I work.
+I have been skeptical that LLM's will be the next major revolution in technology.
+Experience has provided enough context to know that this isn't the first technology that claims to change the world.
+But like any tool, I prefer to be curious to before forming a strong opinion.
+
+## Early days
+
+GitHub Copilot was made generally available in June 2022 and I used it for the first time shortly after.
+One of my favorite moments was forgetting to disable Copilot during an interview at Grafana Labs.
+Part of Grafana Labs interview process is being tasked with solving a small coding challenge based upon a problem in an actual product.
+You pair up with 2 other engineers and get to work in whatever language and environment you feel comfortable in.
+After reviewing the README and tests, I moved on to implementing the main bits of code.
+Copilot autosuggested something that looked very similar to what I had in mind.
+The interviewers were suprised as they had not seen Copilot before, so I disabled it.
+Despite this early success, I still found it challenging to integrate in my day to day.
+
+## Thinking in pen and paper
+
+I mainly used LLM's on my personal projects.
+These were things that I would work on sporadically.
+When I work sporadically, I find it challenging to pick things back up after some time.
+The elure with LLM's is you can offload the context into an LLM and let it pick things back up for you.
+This is fine for things that I work on every few months.
+My fear with becoming reliant on an LLM is that I would not absord important bits of context.
 
 ## School Years
 
@@ -33,7 +47,6 @@ My best work for labs was almost always when I could write out the assigment by 
 
 ## Professional life
 
-My career could probably best be described as bumpy.
 I've found I performed my best when I have
 
 - Had consistent access to white boards

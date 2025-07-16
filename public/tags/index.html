@@ -62,48 +62,56 @@
 
   <div class="content">
     <header>
+      <header>
+  
+  <h1><a href="/">Mark Poko</a></h1>
+   
+  <p>A Tech Blog</p>
+  
+
+  
+  <script>
+    (function () {
+      var webSdkScript = document.createElement("script");
+
       
+      webSdkScript.src =
+        "https://unpkg.com/@grafana/faro-web-sdk@latest/dist/bundle/faro-web-sdk.iife.js";
 
-<div class="header">
+      webSdkScript.onload = () => {
+        window.GrafanaFaroWebSdk.initializeFaro({
+          url: "https://faro-collector-prod-us-east-2.grafana.net/collect/ca670bb0217f3a5cc40ce1796b990ea8",
+          app: {
+            name: "markpoko.dev/blog",
+            version: "1.0.0",
+            environment: "production",
+          },
+        });
 
-    
-
-    <h1 class="header-title">
-        <a href="http://localhost:1313/">Mark Poko</a>
-    </h1>
-
-    <div class="flex">
         
+        
+        var webTracingScript = document.createElement("script");
 
         
+        webTracingScript.src =
+          "https://unpkg.com/@grafana/faro-web-tracing@latest/dist/bundle/faro-web-tracing.iife.js";
+
         
+        webTracingScript.onload = () => {
+          window.GrafanaFaroWebSdk.faro.instrumentations.add(
+            new window.GrafanaFaroWebTracing.TracingInstrumentation()
+          );
+        };
+
+        
+        document.head.appendChild(webTracingScript);
+      };
+
       
-        <p class="small ">
-            <a href="/" >
-                /home
-            </a>
-        </p>
-        
-      
-        <p class="small ">
-            <a href="/posts" >
-                /posts
-            </a>
-        </p>
-        
-      
-        <p class="small ">
-            <a href="/page/about" >
-                /about
-            </a>
-        </p>
-        
-        
-    </div>
-
-    
-
-</div>
+      document.head.appendChild(webSdkScript);
+    })();
+  </script>
+</header>
 
     </header>
 

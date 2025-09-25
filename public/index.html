@@ -3,20 +3,34 @@
   dir="ltr">
 
 <head>
-	<meta name="generator" content="Hugo 0.148.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.150.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
 
 
-<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+
+
+
+
+    
+
+
+
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/apple-touch-icon.png">
 
 <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="Mark Poko">
 <meta name="description" content="A Tech Blog"/>
+
+
 
 <title>
     
@@ -44,9 +58,19 @@
 
 
 
+<link rel="stylesheet" href="/assets/combined.min.56b1873d8852f8a5a109abda36c1bfcde55cb48e5bcbe0d8c934a196a7dc374a.css" media="all">
 
-<link rel="stylesheet" href="/assets/combined.min.fb73015f9d400c8a9e83cd838d03d42b8b6316b9c19bd16e4f01b130719e243b.css" media="all">
 
+
+
+
+
+
+
+
+
+
+    
 
 
 
@@ -164,11 +188,35 @@
     <div class="post-line">
 
     
+
     
-    
+        <p class="line-date">23 Jul 2025 </p>
     
 
-    <p class="line-date">14 Jul 2025 </p>
+    <div>
+        <p class="line-title">
+            <a href="/posts/grpc/">
+                gRPC
+            </a>
+        </p>
+
+        
+        <p class="line-summary"> <p>I&rsquo;ve heard of gRPC for quite some time, ran many applications in my life as a platform engineer that had gRPC endpoints, but never directly contributed to it.
+gRPC is coming up more frequently now that I&rsquo;m working as a backend engineer, and I feel like I need to dive deeper into the fundamentals.
+The code is intuitive enough to update existing handlers.
+But what happens if you need to create a new handler?
+Or if you need to update how <a href="github.com/grafana/synthetic-monitoring-agent/issues/738">the client is initialized</a>?</p> </p>
+        
+    </div>
+</div>
+    
+    <div class="post-line">
+
+    
+
+    
+        <p class="line-date">14 Jul 2025 </p>
+    
 
     <div>
         <p class="line-title">
@@ -184,7 +232,7 @@ Experience has provided enough context to know that this isn&rsquo;t the first t
 But like any tool, I prefer to be curious to before forming a strong opinion.</p>
 <h2 class="heading" id="early-days">
   Early days
-  <a href="#early-days">#</a>
+  <a class="anchor" href="#early-days">#</a>
 </h2>
 <p>GitHub Copilot was made generally available in June 2022 and I used it for the first time shortly after.
 One of my favorite moments was forgetting to disable Copilot during an interview at Grafana Labs.
@@ -201,11 +249,10 @@ Despite this early success, I still found it challenging to integrate in my day 
     <div class="post-line">
 
     
-    
-    
-    
 
-    <p class="line-date">27 Jan 2025 </p>
+    
+        <p class="line-date">27 Jan 2025 </p>
+    
 
     <div>
         <p class="line-title">
@@ -215,18 +262,18 @@ Despite this early success, I still found it challenging to integrate in my day 
         </p>
 
         
-        <p class="line-summary"> <h1 class="heading" id="faro">
-  Faro
-  <a href="#faro">#</a>
-</h1>
-<blockquote>
-<p>Disclaimer!
-I work at Grafana Labs, but this is not endorsed.
-I&rsquo;m writing this in my personal time as I explore Faro and see how I can use it with hugo.</p></blockquote>
-<p>I want to monitor traffic to this site, but to do it in a way that has some semblance of privacy.
-In the past I&rsquo;ve used Google Analytics, but feel this pulls much more data then I&rsquo;m comfortable with.
-It&rsquo;s a powerful tool that I&rsquo;ve used personally and professionaly, but for the most part I do not need most of the features.
-I want to be able to know the following</p> </p>
+        <p class="line-summary"> <blockquote>
+<p><strong>Disclaimer</strong>! I work at Grafana Labs and am writing this in my personal time to explore the product</p></blockquote>
+<p>I want to monitor traffic to this site and do it in a way that maintains privacy.
+In the past I&rsquo;ve used Google Analytics, which I&rsquo;m opting not to use due to the amount of data collected.</p>
+<p>Here are some of the things I&rsquo;d like to track:</p>
+<ul>
+<li>How many users visited my website, broken down by page</li>
+<li>How long does a user stay?</li>
+<li>How much data is transmitted?</li>
+<li>How well does the page perform?</li>
+</ul>
+<p>Since I work at Grafana, I am biased towards using <a href="https://grafana.com/oss/faro/">Grafana Faro</a>.</p> </p>
         
     </div>
 </div>
@@ -234,11 +281,10 @@ I want to be able to know the following</p> </p>
     <div class="post-line">
 
     
-    
-    
-    
 
-    <p class="line-date">17 Jan 2025 </p>
+    
+        <p class="line-date">17 Jan 2025 </p>
+    
 
     <div>
         <p class="line-title">
@@ -260,11 +306,10 @@ As Google <a href="https://killedbygoogle.com/">does</a>, the <a href="https://9
     <div class="post-line">
 
     
-    
-    
-    
 
-    <p class="line-date">17 Jan 2025 </p>
+    
+        <p class="line-date">17 Jan 2025 </p>
+    
 
     <div>
         <p class="line-title">
@@ -289,8 +334,32 @@ As Google <a href="https://killedbygoogle.com/">does</a>, the <a href="https://9
     </main>
   </div>
 
+  
+  
+
+
+
+
+
+    
+
+
+
+
   <footer>
     
+
+    
+    
+
+
+
+
+
+    
+
+
+
 
     
     <p>Powered by
@@ -306,41 +375,8 @@ As Google <a href="https://killedbygoogle.com/">does</a>, the <a href="https://9
   </footer>
 
   
-
 </body>
 
-<script>
-
-  function isAuto() {
-    return document.body.classList.contains("auto");
-  }
-
-  function setTheme() {
-    if (!isAuto()) {
-      return
-    }
-
-    document.body.classList.remove("auto");
-    let cls = "light";
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      cls = "dark";
-    }
-
-    document.body.classList.add(cls);
-  }
-
-  function invertBody() {
-    document.body.classList.toggle("dark");
-    document.body.classList.toggle("light");
-  }
-
-  if (isAuto()) {
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
-  }
-
-  setTheme();
-
-</script>
-
+<script src="/js/theme-switch.js"></script>
 <script defer src="/js/copy-code.js"></script>
 </html>

@@ -8,7 +8,7 @@ tag = 'tags'
 
 [params]
 # Meta description
-description = "A Tech Blog"
+description = ""
 
 # Appearance settings
 theme = 'auto'
@@ -25,13 +25,15 @@ homeCollectionTitle = 'Posts'
 homeCollection = 'posts'
 
 # Lists parameters
-paginationSize = 100
+paginationSize = 5
 listSummaries = true
 listDateFormat = '2 Jan 2006'
 
 # Breadcrumbs
 [params.breadcrumbs]
 enabled = true
+showCurrentPage = true 
+home = "~"
 
 # Social icons
 [[params.social]]
@@ -42,11 +44,6 @@ url = "https://www.linkedin.com/in/markpoko/"
 name = "github"
 url = "https://github.com/pokom"
 
-# Main menu pages
-[[params.menu]]
-name = "home"
-url = "/"
-
 [[params.menu]]
 name = "posts"
 url = "/posts"
@@ -54,6 +51,10 @@ url = "/posts"
 [[params.menu]]
 name = "about"
 url = "/page/about"
+
+[[params.menu]]
+name = "how this is built"
+url = "/page/how-its-built"
 
 # Syntax highlight on code blocks
 [markup]

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Mark Poko</title><link>https://pokom.github.io/page/</link><description>Recent content in Pages on Mark Poko</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://pokom.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://pokom.github.io/page/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pokom.github.io/page/about/</guid><description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.
+I work at &lt;a href="https://grafana.com/"&gt;Grafana Labs&lt;/a&gt;, working on &lt;a href="https://grafana.com/products/cloud/synthetic-monitoring/"&gt;Synthetic Monitoring&lt;/a&gt;.
+that, I worked on the platform team building out tooling for cost management.
+Some things I work on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/synthetic-monitoring-agent"&gt;synthetic-monitoring-agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/cloudcost-costexporter"&gt;cloudcost-exporter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/Kost"&gt;kost&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

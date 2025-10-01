@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Mark Poko</title><link>https://pokom.github.io/</link><description>Recent content in Home on Mark Poko</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 30 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://pokom.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>One Month with Arch</title><link>https://pokom.github.io/posts/arch/</link><pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate><guid>https://pokom.github.io/posts/arch/</guid><description>&lt;p&gt;I had a laptop refresh at work and decided to try running &lt;a href="https://archlinux.org/"&gt;Arch Linux&lt;/a&gt; for the first time.
+I&amp;rsquo;ve used Ubuntu for workstations at a few other jobs, but not all of the places I worked supported this.
+The challenge I had for myself was to get a basic setup within a weeks time and then decide if I wanted to switch back to Ubuntu.
+A week turned into a month, but here&amp;rsquo;s some of my experiences.&lt;/p&gt;</description></item><item><title>gRPC</title><link>https://pokom.github.io/posts/grpc/</link><pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate><guid>https://pokom.github.io/posts/grpc/</guid><description>&lt;p&gt;I&amp;rsquo;ve heard of gRPC for quite some time, ran many applications in my life as a platform engineer that had gRPC endpoints, but never directly contributed to it.
+gRPC is coming up more frequently now that I&amp;rsquo;m working as a backend engineer, and I feel like I need to dive deeper into the fundamentals.
+The code is intuitive enough to update existing handlers.
+But what happens if you need to create a new handler?
+Or if you need to update how &lt;a href="github.com/grafana/synthetic-monitoring-agent/issues/738"&gt;the client is initialized&lt;/a&gt;?&lt;/p&gt;</description></item><item><title>Faro</title><link>https://pokom.github.io/posts/faro/</link><pubDate>Mon, 27 Jan 2025 21:09:42 -0500</pubDate><guid>https://pokom.github.io/posts/faro/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;! I work at Grafana Labs and am writing this in my personal time to explore the product&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;I want to monitor traffic to this site and do it in a way that maintains privacy.
+In the past I&amp;rsquo;ve used Google Analytics, which I&amp;rsquo;m opting not to use due to the amount of data collected.&lt;/p&gt;
+&lt;p&gt;Here are some of the things I&amp;rsquo;d like to track:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How many users visited my website, broken down by page&lt;/li&gt;
+&lt;li&gt;How long does a user stay?&lt;/li&gt;
+&lt;li&gt;How much data is transmitted?&lt;/li&gt;
+&lt;li&gt;How well does the page perform?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since I work at Grafana, I am biased towards using &lt;a href="https://grafana.com/oss/faro/"&gt;Grafana Faro&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Squarespace</title><link>https://pokom.github.io/posts/squarespace/</link><pubDate>Fri, 17 Jan 2025 22:36:07 -0500</pubDate><guid>https://pokom.github.io/posts/squarespace/</guid><description>&lt;p&gt;I use squarespace for &lt;code&gt;markpoko.dev&lt;/code&gt;&amp;rsquo;s DNS records, though not by choice.
+Up until 2024, I had used Google domains to handle my DNS thingy.
+At the time it made sense as I was diving deep into learning GCP.
+There was a nice integration between Cloud Run and Google Domains, making it trivial to expose services over a DNS entry.
+As Google &lt;a href="https://killedbygoogle.com/"&gt;does&lt;/a&gt;, the &lt;a href="https://9to5google.com/2023/06/15/google-domains-squarespace/"&gt;project was shut down and sold&lt;/a&gt; off to Squarespace.&lt;/p&gt;</description></item><item><title>Hello World</title><link>https://pokom.github.io/posts/2025-01-17-hello-world/</link><pubDate>Fri, 17 Jan 2025 14:10:59 -0500</pubDate><guid>https://pokom.github.io/posts/2025-01-17-hello-world/</guid><description>&lt;p&gt;Hello, world&lt;/p&gt;</description></item><item><title>About</title><link>https://pokom.github.io/page/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pokom.github.io/page/about/</guid><description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.
+I work at &lt;a href="https://grafana.com/"&gt;Grafana Labs&lt;/a&gt;, working on &lt;a href="https://grafana.com/products/cloud/synthetic-monitoring/"&gt;Synthetic Monitoring&lt;/a&gt;.
+that, I worked on the platform team building out tooling for cost management.
+Some things I work on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/synthetic-monitoring-agent"&gt;synthetic-monitoring-agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/cloudcost-costexporter"&gt;cloudcost-exporter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/Kost"&gt;kost&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

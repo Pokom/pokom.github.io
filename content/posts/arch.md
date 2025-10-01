@@ -1,6 +1,5 @@
 +++
-date = '2025-09-30T22:02:23-04:00'
-draft = false 
+date = '2025-09-30'
 title = 'One Month with Arch'
 readTime = true
 +++

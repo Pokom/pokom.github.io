@@ -6,8 +6,15 @@
     <description>Recent content in Home on Mark Poko</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>One Month with Arch</title>
+      <link>http://localhost:1313/posts/arch/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/arch/</guid>
+      <description>&lt;p&gt;I had a laptop refresh at work and decided to try running &lt;a href=&#34;https://archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; for the first time.&#xA;I&amp;rsquo;ve used Ubuntu for workstations at a few other jobs, but not all of the places I worked supported this.&#xA;The challenge I had for myself was to get a basic setup within a weeks time and then decide if I wanted to switch back to Ubuntu.&#xA;A week turned into a month, but here&amp;rsquo;s some of my experiences.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>gRPC</title>
       <link>http://localhost:1313/posts/grpc/</link>

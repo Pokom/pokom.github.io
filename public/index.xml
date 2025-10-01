@@ -6,8 +6,15 @@
     <description>Recent content in Home on Mark Poko</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 22:02:23 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>One Month with Arch</title>
+      <link>http://localhost:1313/posts/arch/</link>
+      <pubDate>Wed, 10 Sep 2025 22:02:23 -0400</pubDate>
+      <guid>http://localhost:1313/posts/arch/</guid>
+      <description>&lt;p&gt;I had a laptop refresh at work and decided to try running &lt;a href=&#34;https://archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; for the first time.&#xA;I&amp;rsquo;ve used Ubuntu for workstations at a few other jobs, but not all of the places I worked supported this.&#xA;The challenge I had for myself was to get a basic setup within a weeks time and then decide if I wanted to switch back to Ubuntu.&#xA;A week turned into a month, but here&amp;rsquo;s some of my experiences.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>gRPC</title>
       <link>http://localhost:1313/posts/grpc/</link>
@@ -20,7 +27,7 @@
       <link>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</link>
       <pubDate>Mon, 14 Jul 2025 20:57:06 -0400</pubDate>
       <guid>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</guid>
-      <description>&lt;p&gt;Windsurfer being aqcuired by &lt;del&gt;OpenAI&lt;/del&gt; Cognition is making me reconsider the way I work.&#xA;I have been skeptical that LLM&amp;rsquo;s will be the next major revolution in technology.&#xA;Experience has provided enough context to know that this isn&amp;rsquo;t the first technology that claims to change the world.&#xA;There&amp;rsquo;s still this small pit of fear that I am wrong on this and miss out on a potentially career ending mistake.&lt;/p&gt;&#xA;&lt;h2 class=&#34;heading&#34; id=&#34;early-days-of-llms&#34;&gt;&#xA;  Early Days of LLM&amp;rsquo;s&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#early-days-of-llms&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I started using GitHub Copilot just about when it GA&amp;rsquo;ed in mid 2022.&#xA;My daughter was roughly 6 months old  and so it&amp;rsquo;s safe to say I wasn&amp;rsquo;t getting much sleep.&#xA;Lack of sleep doesn&amp;rsquo;t line up well with knowledge work, so I was curious to see what these tools could do to help.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Windsurfer being aqcuired by &lt;del&gt;OpenAI&lt;/del&gt; Cognition is making me reconsider the way I work.&#xA;I have been skeptical that LLM&amp;rsquo;s will be the next major revolution in technology.&#xA;Experience has provided enough context to have heard many other technologies claim they&amp;rsquo;ll usher in a new era of tech.&#xA;There&amp;rsquo;s still this small pit of fear that I am wrong on this and miss out on a potentially career ending mistake.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Faro</title>
@@ -37,18 +44,18 @@
       <description>&lt;p&gt;I use squarespace for &lt;code&gt;markpoko.dev&lt;/code&gt;&amp;rsquo;s DNS records, though not by choice.&#xA;Up until 2024, I had used Google domains to handle my DNS thingy.&#xA;At the time it made sense as I was diving deep into learning GCP.&#xA;There was a nice integration between Cloud Run and Google Domains, making it trivial to expose services over a DNS entry.&#xA;As Google &lt;a href=&#34;https://killedbygoogle.com/&#34;&gt;does&lt;/a&gt;, the &lt;a href=&#34;https://9to5google.com/2023/06/15/google-domains-squarespace/&#34;&gt;project was shut down and sold&lt;/a&gt; off to Squarespace.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>About</title>
-      <link>http://localhost:1313/page/about/</link>
-      <pubDate>Fri, 17 Jan 2025 14:39:54 -0500</pubDate>
-      <guid>http://localhost:1313/page/about/</guid>
-      <description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.&#xA;Professionally, I work at &lt;a href=&#34;https://grafana.com/&#34;&gt;Grafana Labs&lt;/a&gt; where I work on their cloud platform.&#xA;I play music as well, mostly bass guitar now a days.&lt;/p&gt;&#xA;&lt;p&gt;At Grafana Labs, I&amp;rsquo;m currently working on &lt;a href=&#34;https://grafana.com/products/cloud/synthetic-monitoring/&#34;&gt;Synthetic Monitoring&lt;/a&gt;.&#xA;Before that, I worked on the platform team building out tooling for cost management.&#xA;Check out:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/cloudcost-costexporter&#34;&gt;cloudcost-exporter&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/Kost&#34;&gt;kost&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
       <title>Hello World</title>
       <link>http://localhost:1313/posts/2025-01-17-hello-world/</link>
       <pubDate>Fri, 17 Jan 2025 14:10:59 -0500</pubDate>
       <guid>http://localhost:1313/posts/2025-01-17-hello-world/</guid>
       <description>&lt;p&gt;Hello, world&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/page/about/</guid>
+      <description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.&#xA;I work at &lt;a href=&#34;https://grafana.com/&#34;&gt;Grafana Labs&lt;/a&gt;, working on &lt;a href=&#34;https://grafana.com/products/cloud/synthetic-monitoring/&#34;&gt;Synthetic Monitoring&lt;/a&gt;.&#xA;that, I worked on the platform team building out tooling for cost management.&#xA;Some things I work on:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/synthetic-monitoring-agent&#34;&gt;synthetic-monitoring-agent&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/cloudcost-costexporter&#34;&gt;cloudcost-exporter&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/Kost&#34;&gt;kost&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>

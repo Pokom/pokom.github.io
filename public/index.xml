@@ -6,8 +6,15 @@
     <description>Recent content in Home on Mark Poko</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2026 03:29:59 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Effective Agentic Coding</title>
+      <link>http://localhost:1313/posts/effective-agentic-coding/</link>
+      <pubDate>Mon, 16 Mar 2026 03:29:59 -0400</pubDate>
+      <guid>http://localhost:1313/posts/effective-agentic-coding/</guid>
+      <description>&lt;p&gt;I want to start capturing different ways of using agentic tools effectively.&#xA;Most of the discourse I see online around agentic tools such as Claude/Codex/Gemini focus around how to generate code.&#xA;However, my personal experience has been that writing code is likely the last thing I end up using the tooling for.&#xA;After ~4 months of using agentic tools, I&amp;rsquo;ve started to recognize distinct workflows:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;research and investigate&lt;/li&gt;&#xA;&lt;li&gt;data gathering&lt;/li&gt;&#xA;&lt;li&gt;learn and experiment&lt;/li&gt;&#xA;&lt;li&gt;explore implementation details&lt;/li&gt;&#xA;&lt;li&gt;Finally, coding&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Let me explain each of these areas in a detail.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>One Month with Arch</title>
       <link>http://localhost:1313/posts/arch/</link>
@@ -34,7 +41,7 @@
       <link>http://localhost:1313/posts/faro/</link>
       <pubDate>Mon, 27 Jan 2025 21:09:42 -0500</pubDate>
       <guid>http://localhost:1313/posts/faro/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;! I work at Grafana Labs and am writing this in my personal time to explore the product&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;I want to monitor traffic to this site and do it in a way that maintains privacy.&#xA;In the past I&amp;rsquo;ve used Google Analytics, which I&amp;rsquo;m opting not to use due to the amount of data collected.&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the things I&amp;rsquo;d like to track:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How many users visited my website, broken down by page&lt;/li&gt;&#xA;&lt;li&gt;How long does a user stay?&lt;/li&gt;&#xA;&lt;li&gt;How much data is transmitted?&lt;/li&gt;&#xA;&lt;li&gt;How well does the page perform?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since I work at Grafana, I am biased towards using &lt;a href=&#34;https://grafana.com/oss/faro/&#34;&gt;Grafana Faro&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;! I work at Grafana Labs and am writing this in my personal time to explore the product&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;I want to monitor traffic to this site and do it in a way that maintains privacy.&#xA;In the past I&amp;rsquo;ve used Google Analytics, which I&amp;rsquo;m opting not to use due to the amount of data collected.&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the things I&amp;rsquo;d like to track:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How many users visited my website, broken down by page&lt;/li&gt;&#xA;&lt;li&gt;How long does a user stay?&lt;/li&gt;&#xA;&lt;li&gt;How much data is transmitted?&lt;/li&gt;&#xA;&lt;li&gt;How well does the page perform?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since I work at Grafana, I am biased towards using &lt;a href=&#34;https://grafana.com/oss/faro/&#34;&gt;Grafana Faro&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Squarespace</title>

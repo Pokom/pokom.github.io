@@ -2,6 +2,7 @@
 date = '2026-03-16T03:29:59-04:00'
 draft = false
 title = 'Effective Agentic Coding'
+readTime = true
 +++
 
 I want to start capturing different ways of using agentic tools effectively.

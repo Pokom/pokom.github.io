@@ -26,6 +26,7 @@ I find this to be no different then if I were to manually search Google and find
 
 With the right prompts, you can instruct your agent to always provide sources that you _should_ verify yourself.
 Used effectively, you can cut gathering sources from hours to minutes and then spend the time digging deeper into what was discovered.
+I wrote about this more in [Agentic Research]({{< ref "posts/agentic-research.md" >}}).
 
 ## Data Gathering
 

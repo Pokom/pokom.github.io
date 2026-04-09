@@ -5,7 +5,7 @@ title = 'Agentic Research'
 readTime = true
 +++
 
-In my previous post about [Effective Agentic Coding](./effective-agentic-coding.md), I listed out five distinct workflows that I find myself falling into.
+In my previous post about [Effective Agentic Coding]({{< ref "posts/effective-agentic-coding.md" >}}), I listed out five distinct workflows that I find myself falling into.
 The first of which was around researching topics with agents such as Claude Code.
 For many folks, this many be shocking as agentics are exceptionally confident and will tell you what you would like.
 However, they also are exceptional are searching the web and analyzing text and synthesizing it into something usable.

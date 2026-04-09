@@ -71,3 +71,27 @@ So overall, _yes_ it was useful in getting me material faster.
 _No_, I still do not have a confident answer on how to collect better performance metrics from chromium.
 What I _do_ have is guided material I can use to spin up experiments to dig deeper!
 Which leads well into how I use claude to experiment and learn!
+
+## What's changed
+
+My workflow for researching topics has completely shifted.
+For my _whole life_, it's generally been: `Have problem => Search the internet with appropriate query => read through top 5 results => repeat until satisfied`
+Early search engines weren't great, but were helpful enough.
+Google reshaped the search engine market and had a market share for almost 20 years.
+Wikipedia and StackOverflow were my mainstays for anything science + computer science related.
+HowStuffWorks was a great surface level resource for learning about general things.
+Reddit was a place to find communities around niche topics.
+Basically, I learned not just _how_ to find things, but _where_ reliable information could be found.
+
+It now makes more sense how Google effectively ruined their search page with AI placement.
+ChatGPT was an existential threat, but in hindsight it wasn't the one Google was worried about.
+Harnesses like Claude were the things Google was worried about.
+A majority of my day is now spent in the terminal where I do most of my research without ever going to a web browser or google directly.
+
+## Where to go from here
+
+So now I'm spending a considerable amount of time reformulating how I research and discover topics.
+LLM's and agents aren't perfect, but neither are search engines or the internet.
+These are all tools that help you discover, but the onus still is on the human to decide what to do with that information.
+What's changed is how _fast_ I can gather information.
+My wetware is still the bottleneck, and so I must figure out ways of keeping these two in sync.

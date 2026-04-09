@@ -95,3 +95,15 @@ LLM's and agents aren't perfect, but neither are search engines or the internet.
 These are all tools that help you discover, but the onus still is on the human to decide what to do with that information.
 What's changed is how _fast_ I can gather information.
 My wetware is still the bottleneck, and so I must figure out ways of keeping these two in sync.
+
+What I've found that works for me though is:
+
+* have a problem
+* launch a new session in some harness(claude for example)
+* stick to planning mode and work to gather as much information as possible
+* distill information into some written markdown file
+* iterate
+
+The artifact produced from this step is then used as the basis for further work.
+It's far from perfect, but that's fine.
+Search engines and the internet is far from perfect, but you use the tools the best way you can.

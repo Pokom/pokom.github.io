@@ -1,25 +1,22 @@
 +++
 date = '2026-04-09T06:17:52-04:00'
-draft = false
+draft = true
 title = 'Agentic Research'
 readTime = true
 +++
 
 In my previous post about [Effective Agentic Coding]({{< ref "posts/effective-agentic-coding.md" >}}), I listed out five distinct workflows that I find myself falling into.
-The first of which was around researching topics with agents such as Claude Code.
-For many folks, this may be shocking as agentics are exceptionally confident and will tell you what you would like.
-However, they also are faster than I am at searching the web and analyzing text and synthesizing it into something usable.
+The first topic is using agents to researching topics.
+For many folks, this can be shocking as agentics are exceptionally confident and will tell you what you would like.
+They search the web faster and analyzing text and synthesizing it into something usable.
 
 ## First must come the problem
 
-At Grafana Labs, I'm working on the [Synthetic Monitoring](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/) product which has had browser tests usage growing rapidly.
-With any period of rapid growth, we're also experiencing growing pains as we learn to operate browser checks at scale.
-So I've been dealing with escalations and learning to operate these myself, and have found it challenging to search to web around this topic.
-There's only a handful of companies who are operating large browser farms, and not many of them write publicly about their platform.
-This my problem:
+I work on the [Synthetic Monitoring](https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/) product which started offering browser checks about a year ago(May 2025). 
+Browser checks had a healthy adoption rate, and with that has come growing pains.
 
-* [chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/README.md) docs are rather dense
-* discovering written posts about scaling chromium on k8s is hard
+* [chromium](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/README.md) has extensive documentation can be tough to read
+* discovering written posts about scaling chromium on k8s 
 * no tools exist to help measure performance
 
 Enter agents!

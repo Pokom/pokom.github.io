@@ -1,6 +1,6 @@
 +++
 date = '2026-04-09T06:17:52-04:00'
-draft = true
+draft = false
 title = 'Agentic Research'
 readTime = true
 +++
@@ -23,8 +23,7 @@ Enter agents!
 
 ## Researching with agents
 
-Here was my prompt for Claude:
-
+This is the prompt I used with Claude:
 > This is purely a planning and research session. The end result should be a written document that I can refer to in the next phase. I'm looking to learn more about how to collect metrics on running chromium instances. The context is I run a chromium wrapper in grafana/crocochrome that is invoked from k6 runners, and I run these at scale in kubernetes. I'd like to figure out a way of gathering more runtime diagnostic data on chromium sessions that are spawned and execute k6 browser tests.
 
 What happened from this point is:

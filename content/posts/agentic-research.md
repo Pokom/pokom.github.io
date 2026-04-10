@@ -7,8 +7,8 @@ readTime = true
 
 In my previous post about [Effective Agentic Coding]({{< ref "posts/effective-agentic-coding.md" >}}), I listed out five distinct workflows that I find myself falling into.
 The first of which was around researching topics with agents such as Claude Code.
-For many folks, this many be shocking as agentics are exceptionally confident and will tell you what you would like.
-However, they also are exceptional are searching the web and analyzing text and synthesizing it into something usable.
+For many folks, this may be shocking as agentics are exceptionally confident and will tell you what you would like.
+However, they also are faster than I am at searching the web and analyzing text and synthesizing it into something usable.
 
 ## First must come the problem
 
@@ -34,7 +34,7 @@ What happened from this point is:
 
 * Multiple agents were spawned
 * Each agent was tasked with a specific part of the problem:
-  * Chrome Developer Protocols(CDP)
+  * Chrome DevTools Protocols(CDP)
   * OS-level chromium metrics
   * crocochrome architecture
   * chromium monitoring in k8s
@@ -59,11 +59,11 @@ For me, the most effective sections that were produced were:
 * [what's missing](https://gist.github.com/Pokom/ad2031bc8ae234b990118e680a5055c1#whats-missing)
 
 From there, I added one more prompt because I was overwhelmed, and asked claude to simplify things as much as possible and provide learning resources.
-The result was [learning cdp](https://gist.github.com/Pokom/ad2031bc8ae234b990118e680a5055c1#learning-cdp), which was honestly more effective then anything else.
+The result was [learning cdp](https://gist.github.com/Pokom/ad2031bc8ae234b990118e680a5055c1#learning-cdp), which was honestly more effective than anything else.
 
-## Was it useful
+## Was it useful?
 
-This exercise got me closer to material much faster then I could have without claude.
+This exercise got me closer to material much faster than I could have without claude.
 The prompt I provided was too broad and I ended up with about 500 lines of text that took me another hour or so to read through.
 The links it provided were the most valuable aspect as it got me closer to where I wanted to be.
 It's _almost_ like I created a wikipedia article on the subject that's complete vibes.
@@ -83,10 +83,10 @@ HowStuffWorks was a great surface level resource for learning about general thin
 Reddit was a place to find communities around niche topics.
 Basically, I learned not just _how_ to find things, but _where_ reliable information could be found.
 
-It now makes more sense how Google effectively ruined their search page with AI placement.
+It now makes more sense how Google took such a big risk placing AI results at the topic of their searches.
 ChatGPT was an existential threat, but in hindsight it wasn't the one Google was worried about.
 Harnesses like Claude were the things Google was worried about.
-A majority of my day is now spent in the terminal where I do most of my research without ever going to a web browser or google directly.
+I no longer bounce between searching the internet and the terminal for work.
 
 ## Where to go from here
 

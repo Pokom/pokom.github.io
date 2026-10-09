@@ -8,6 +8,7 @@ spec:
   channels:
     k6: null
   enabled: true
+  folderUid: ""
   frequency: 60000
   job: blog
   probes:

@@ -1,0 +1,64 @@
+name: Synthetic Monitoring drift
+
+# Fails when a live check no longer matches sm-checks/, e.g. it was edited or
+# deleted in the SM UI. The next apply would silently overwrite that edit.
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "sm-checks/**"
+      - "scripts/sm-drift.sh"
+      - ".github/workflows/sm-drift.yaml"
+
+permissions:
+  contents: read
+
+env:
+  GRAFANA_SERVER: https://markpoko.grafana.net
+  # Keep in sync with sm-checks.yaml so both serialize checks the same way.
+  GCX_REF: 2a388d08ce7759804c711c3ccd18276d97f626e1
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # On PRs, compare live against main's files, not the PR's: a PR that
+      # changes a check is meant to differ. What matters is an edit made
+      # outside the repo that merging would overwrite.
+      - if: github.event_name == 'pull_request'
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+          cache: false
+
+      - name: Install gcx
+        run: |
+          go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
+          gcx --version
+          yq --version
+          jq --version
+
+      # What merging this PR will change on the live checks, written to the
+      # job summary. Differences are expected and don't fail the job.
+      - name: Plan
+        if: github.event_name == 'pull_request'
+        env:
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+        run: scripts/sm-drift.sh --plan sm-checks
+
+      - name: Check for drift
+        if: ${{ !cancelled() }}
+        env:
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+          CHECKS_DIR: ${{ github.event_name == 'pull_request' && 'base/sm-checks' || 'sm-checks' }}
+        run: scripts/sm-drift.sh "$CHECKS_DIR"

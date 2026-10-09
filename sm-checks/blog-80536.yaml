@@ -13,6 +13,7 @@ spec:
       manifest: < 2.0.0
       name: v1.x
   enabled: true
+  folderUid: grafana-synthetic-monitoring-app
   frequency: 300000
   job: blog
   labels:

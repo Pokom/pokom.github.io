@@ -1,0 +1,32 @@
+apiVersion: syntheticmonitoring.ext.grafana.app/v1alpha1
+kind: Check
+metadata:
+  name: blog-80536
+spec:
+  alertSensitivity: none
+  basicMetricsOnly: true
+  channels:
+    k6:
+      default: false
+      deprecatedAfter: "2026-07-01T00:00:00Z"
+      id: v1
+      manifest: < 2.0.0
+      name: v1.x
+  enabled: true
+  frequency: 300000
+  job: blog
+  labels:
+  - name: env
+    value: blog
+  - name: label_check
+    value: test
+  - name: label_phase
+    value: test
+  probes:
+  - NorthVirginia
+  - Ohio
+  settings:
+    scripted:
+      script: aW1wb3J0IGh0dHAgZnJvbSAnazYvaHR0cCc7CmltcG9ydCB7IHNsZWVwLCBjaGVjayB9IGZyb20gJ2s2JzsKaW1wb3J0IHsgQ291bnRlciB9IGZyb20gJ2s2L21ldHJpY3MnOwoKY29uc3QgZGVhZExpbmtzTWV0cmljID0gQ291bnRlcignZGVhZF9saW5rcycpOwoKZXhwb3J0IGNvbnN0IG9wdGlvbnMgPSB7CiAgdnVzOiAxLAogIGl0ZXJhdGlvbnM6IDEsCn07CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiAoKSB7CiAgY29uc3QgcmVzID0gaHR0cC5nZXQoJ2h0dHBzOi8vbWFya3Bva28uZGV2Jyk7CgogIGNoZWNrKHJlcywgeyAnc3RhdHVzIGlzIDIwMCc6IChyKSA9PiByLnN0YXR1cyA9PT0gMjAwIH0pOwoKICAvLyBMaW5rZWRJbiAoYW5kIHNvbWUgb3RoZXIgc2l0ZXMpIHJldHVybiBub24tMjAwcyB0byBib3Qvc2NyYXBlciB1c2VyCiAgLy8gYWdlbnRzIHJlZ2FyZGxlc3Mgb2Ygd2hldGhlciB0aGUgbGluayBpcyBhY3R1YWxseSBicm9rZW4g4oCUIHNraXAgaG9zdHMKICAvLyBrbm93biB0byBkbyB0aGlzIHNvIHRoZXkgZG9uJ3QgZ2V0IGZsYWdnZWQgYXMgZGVhZC4KICBjb25zdCBza2lwSG9zdHMgPSBbJ2xpbmtlZGluLmNvbSddOwoKICBjb25zdCBsaW5rUmVnZXggPSAvaHJlZj0oWyInXT8pKGh0dHBzPzpcL1wvW14iJ1xzPl0rKVwxL2c7CiAgY29uc3QgbGlua3MgPSBbXTsKICBsZXQgbWF0Y2g7CiAgd2hpbGUgKChtYXRjaCA9IGxpbmtSZWdleC5leGVjKHJlcy5ib2R5KSkgIT09IG51bGwpIHsKICAgIGxpbmtzLnB1c2gobWF0Y2hbMl0pOwogIH0KCiAgY29uc29sZS5sb2coYEZvdW5kICR7bGlua3MubGVuZ3RofSBsaW5rcyBvbiB0aGUgcGFnZS5gKTsKCiAgbGV0IGRlYWRDb3VudCA9IDA7CiAgbGlua3MuZm9yRWFjaCgoaHJlZikgPT4gewogICAgaWYgKHNraXBIb3N0cy5zb21lKChob3N0KSA9PiBocmVmLmluY2x1ZGVzKGhvc3QpKSkgewogICAgICByZXR1cm47CiAgICB9CgogICAgY29uc3QgbGlua1JlcyA9IGh0dHAuZ2V0KGhyZWYsIHsgdGltZW91dDogJzVzJyB9KTsKICAgIGlmIChsaW5rUmVzLnN0YXR1cyAhPT0gMjAwKSB7CiAgICAgIGRlYWRDb3VudCsrOwogICAgICBkZWFkTGlua3NNZXRyaWMuYWRkKDEpOwogICAgICBjb25zb2xlLmxvZyhgRGVhZCBsaW5rIGZvdW5kOiAke2hyZWZ9IChzdGF0dXMgJHtsaW5rUmVzLnN0YXR1c30pYCk7CiAgICB9CiAgfSk7CgogIGNvbnNvbGUubG9nKGBDaGVja2VkICR7bGlua3MubGVuZ3RofSBsaW5rcywgJHtkZWFkQ291bnR9IGRlYWQuYCk7CgogIHNsZWVwKDEpOwp9Cg==
+  target: crawler
+  timeout: 15000

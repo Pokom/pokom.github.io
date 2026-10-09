@@ -1,0 +1,25 @@
+apiVersion: syntheticmonitoring.ext.grafana.app/v1alpha1
+kind: Check
+metadata:
+  name: blog-120301
+spec:
+  alertSensitivity: none
+  basicMetricsOnly: true
+  channels:
+    k6: null
+  enabled: true
+  frequency: 60000
+  job: blog
+  probes:
+  - CapeTown
+  - Calgary
+  - Hyderabad
+  settings:
+    http:
+      failIfNotSSL: false
+      failIfSSL: false
+      ipVersion: V4
+      method: GET
+      noFollowRedirects: false
+  target: http://markpoko.dev
+  timeout: 3000

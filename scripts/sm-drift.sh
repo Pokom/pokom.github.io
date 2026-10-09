@@ -50,7 +50,10 @@ for f in "${files[@]}"; do
   fi
 
   repo_json="$(yq -o=json "$f" | jq -S "$normalize")"
-  live_json="$(jq -S "$normalize" <<<"$live")"
+  # An update from a file without folderUid leaves the live folder as is, so
+  # don't compare it unless the file sets it (exports from gcx <= v1.5.0 omit it).
+  live_json="$(jq -S --argjson repo "$repo_json" \
+    "${normalize} | if (\$repo.spec | has(\"folderUid\")) then . else del(.spec.folderUid) end" <<<"$live")"
 
   if "$plan"; then
     if out="$(diff -u --label "live/${name}" --label "repo/${name}" \

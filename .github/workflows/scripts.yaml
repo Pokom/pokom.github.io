@@ -17,6 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: shellcheck
-        run: shellcheck scripts/*.sh scripts/testdata/fake-gcx/gcx
+        run: shellcheck scripts/*.sh scripts/testdata/fake-gcx/gcx scripts/testdata/fake-gh/gh
       - name: Tests
         run: scripts/test.sh

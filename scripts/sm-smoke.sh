@@ -5,7 +5,7 @@
 #
 # `gcx synthetic-monitoring checks test` exits 0 even when probes fail, so
 # this gates on the per-probe results instead. Writes a table to
-# $GITHUB_STEP_SUMMARY when set.
+# $GITHUB_STEP_SUMMARY when set, and also to $SMOKE_REPORT when set.
 #
 # Needs gcx (authenticated), yq (mikefarah) and jq on PATH.
 # Usage: scripts/sm-smoke.sh <check.yaml> <url> <sha>
@@ -31,13 +31,20 @@ TARGET="${url}?cb=${sha}" REGEXP="name=\"?build-sha\"? content=\"?${sha}" \
 
 result="$(gcx synthetic-monitoring checks test -f "$smoke_file" -o json)"
 
-{
-  echo "## Smoke test: ${name} @ ${sha:0:7}"
-  echo
+table="$(
   echo "| Probe | Status |"
   echo "|---|---|"
   jq -r '.probes[] | "| \(.probeName) | \(.status) |"' <<<"$result"
+)"
+{
+  echo "## Smoke test: ${name} @ ${sha:0:7}"
+  echo
+  echo "$table"
 } >>"$summary"
+# Optional copy of the probe table, e.g. for a PR comment.
+if [ -n "${SMOKE_REPORT:-}" ]; then
+  echo "$table" >>"$SMOKE_REPORT"
+fi
 
 total="$(jq '.probes | length' <<<"$result")"
 bad="$(jq -r '[.probes[] | select(.status != "success") | "\(.probeName)=\(.status)"] | join(", ")' <<<"$result")"

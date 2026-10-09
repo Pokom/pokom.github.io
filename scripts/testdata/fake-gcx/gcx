@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 # Stand-in for gcx in offline tests. Prints $FAKE_GCX_OUTPUT (a file) and exits
-# $FAKE_GCX_EXIT (default 0). Copies any -f file to $FAKE_GCX_CAPTURE so tests
-# can assert on what the script sent.
+# $FAKE_GCX_EXIT (default 0). Copies any -f file to $FAKE_GCX_CAPTURE, any -d
+# body to $FAKE_GCX_CAPTURE_DATA, and the arguments to $FAKE_GCX_CAPTURE_ARGS,
+# so tests can assert on what the script sent.
 set -euo pipefail
+if [ -n "${FAKE_GCX_CAPTURE_ARGS:-}" ]; then
+  printf '%s\n' "$@" >"$FAKE_GCX_CAPTURE_ARGS"
+fi
 while [ $# -gt 0 ]; do
   if [ "$1" = "-f" ] && [ -n "${FAKE_GCX_CAPTURE:-}" ]; then
     cp "$2" "$FAKE_GCX_CAPTURE"
+  fi
+  if [ "$1" = "-d" ] && [ -n "${FAKE_GCX_CAPTURE_DATA:-}" ]; then
+    printf '%s' "$2" >"$FAKE_GCX_CAPTURE_DATA"
   fi
   shift
 done

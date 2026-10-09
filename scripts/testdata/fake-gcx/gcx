@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Stand-in for gcx in offline tests. Prints $FAKE_GCX_OUTPUT (a file) and exits
+# $FAKE_GCX_EXIT (default 0). Copies any -f file to $FAKE_GCX_CAPTURE so tests
+# can assert on what the script sent.
+set -euo pipefail
+while [ $# -gt 0 ]; do
+  if [ "$1" = "-f" ] && [ -n "${FAKE_GCX_CAPTURE:-}" ]; then
+    cp "$2" "$FAKE_GCX_CAPTURE"
+  fi
+  shift
+done
+if [ -n "${FAKE_GCX_OUTPUT:-}" ]; then
+  cat "$FAKE_GCX_OUTPUT"
+fi
+exit "${FAKE_GCX_EXIT:-0}"

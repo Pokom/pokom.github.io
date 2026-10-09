@@ -24,6 +24,16 @@
             version: "1.0.0",
             environment: "production",
           },
+          ignoreErrors: [
+            // Layout quirks — harmless, not real errors
+            /^ResizeObserver loop limit exceeded$/,
+            /^ResizeObserver loop completed with undelivered notifications$/,
+            // Cross-origin scripts with no useful stack
+            /^Script error\.$/,
+            // Browser extension interference
+            /chrome-extension:\/\//,
+            /moz-extension:\/\//,
+          ],
         });
 
         // Load instrumentations at the onLoad event of the web-SDK and after the above configuration.

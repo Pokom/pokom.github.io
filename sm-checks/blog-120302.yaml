@@ -1,0 +1,30 @@
+apiVersion: syntheticmonitoring.ext.grafana.app/v1alpha1
+kind: Check
+metadata:
+  name: blog-120302
+spec:
+  alertSensitivity: none
+  basicMetricsOnly: true
+  channels:
+    k6: null
+  enabled: true
+  frequency: 60000
+  job: blog
+  probes:
+  - CapeTown
+  - Calgary
+  - Hyderabad
+  settings:
+    dns:
+      ipVersion: V4
+      port: 53
+      protocol: UDP
+      recordType: A
+      server: dns.google
+      validRCodes:
+      - NOERROR
+      validateAdditionalRRS: {}
+      validateAnswerRRS: {}
+      validateAuthorityRRS: {}
+  target: markpoko.dev
+  timeout: 3000

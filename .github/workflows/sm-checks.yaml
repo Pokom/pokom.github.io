@@ -1,0 +1,63 @@
+name: Synthetic Monitoring checks
+
+# PRs validate sm-checks/*.yaml against the SM API without changing anything
+# (--dry-run). Pushes to main apply them to the live checks.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "sm-checks/**"
+      - ".github/workflows/sm-checks.yaml"
+  push:
+    branches: [main]
+    paths:
+      - "sm-checks/**"
+      - ".github/workflows/sm-checks.yaml"
+
+permissions:
+  contents: read
+
+# Never run two applies against the stack at once.
+concurrency:
+  group: sm-checks-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  GRAFANA_SERVER: https://markpoko.grafana.net
+  # --dry-run is not in a gcx release yet (grafana/gcx#1429), so build from a
+  # pinned main commit. Swap to grafana/setup-gcx@v1 once it ships.
+  GCX_REF: 2a388d08ce7759804c711c3ccd18276d97f626e1
+
+jobs:
+  sm-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+          cache: false
+
+      - name: Install gcx
+        run: |
+          go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
+          gcx --version
+
+      # Each file is named after its check's metadata.name (<job>-<id>), which
+      # is what `checks update` targets. New checks must be created first.
+      - name: ${{ github.event_name == 'pull_request' && 'Validate checks (dry-run)' || 'Apply checks' }}
+        env:
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+        run: |
+          set -euo pipefail
+          args=()
+          if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
+            args+=(--dry-run)
+          fi
+          for f in sm-checks/*.yaml; do
+            name="$(basename "$f" .yaml)"
+            echo "::group::${name}"
+            gcx synthetic-monitoring checks update "$name" -f "$f" "${args[@]}"
+            echo "::endgroup::"
+          done

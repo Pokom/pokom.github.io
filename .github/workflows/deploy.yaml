@@ -15,7 +15,14 @@ jobs:
       # added or changed files to the repository.
       contents: write
 
+    outputs:
+      start_ms: ${{ steps.start.outputs.ms }}
+
     steps:
+      # Start of the deploy window for the Grafana annotation.
+      - id: start
+        run: echo "ms=$(date +%s%3N)" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
@@ -78,6 +85,7 @@ jobs:
           cache: false
 
       - name: Install gcx
+        id: gcx
         run: |
           go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
           gcx --version
@@ -89,3 +97,15 @@ jobs:
         env:
           GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
         run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml https://markpoko.dev/ "${GITHUB_SHA}"
+
+      # Mark the deploy window in Grafana, whether or not the smoke test
+      # passed. A failure here shouldn't fail the deploy.
+      - name: Annotate deploy in Grafana
+        if: ${{ always() && steps.gcx.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+          START_MS: ${{ needs.build.outputs.start_ms }}
+          OUTCOME: ${{ job.status }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: scripts/grafana-annotate.sh "${GITHUB_SHA}" "$OUTCOME" "$START_MS" "$RUN_URL"

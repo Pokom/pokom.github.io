@@ -61,5 +61,36 @@ smoke no-probes.json;    check "smoke: no results fails"      1 $?
 smoke all-success.json 1; check "smoke: gcx error fails"      1 $?
 "$here/sm-smoke.sh" >/dev/null 2>&1; check "smoke: missing args fail" 1 $?
 
+# --- grafana-annotate.sh ---------------------------------------------------
+annotate() { # gcx_exit args...
+  local gcx_exit="$1"; shift
+  : >"$work/body.json"
+  : >"$work/args.txt"
+  PATH="$td/fake-gcx:$PATH" \
+    FAKE_GCX_OUTPUT="$td/annotate/created.json" FAKE_GCX_EXIT="$gcx_exit" \
+    FAKE_GCX_CAPTURE_DATA="$work/body.json" FAKE_GCX_CAPTURE_ARGS="$work/args.txt" \
+    "$here/grafana-annotate.sh" "$@" >"$work/annotate.out" 2>&1
+}
+jqok() { # name jq-filter (must evaluate to true against the posted body)
+  if jq -e "$2" "$work/body.json" >/dev/null 2>&1; then pass=$((pass + 1)); echo "ok   $1"
+  else fail=$((fail + 1)); echo "FAIL $1 (jq false: $2)"; fi
+}
+
+run_url="https://github.com/Pokom/pokom.github.io/actions/runs/1"
+start_ms=1791567200000
+annotate 0 abc1234def success "$start_ms" "$run_url"; check "annotate: posts on success" 0 $?
+has "annotate: uses annotations endpoint" "$work/args.txt" '^/api/annotations$'
+jqok "annotate: org annotation (no dashboard)" '(has("dashboardUID") or has("dashboardId")) | not'
+jqok "annotate: region starts at start_ms"     ".time == $start_ms"
+jqok "annotate: region ends after start"       '.timeEnd > .time'
+jqok "annotate: tags blog, deploy, outcome"    '.tags == ["blog", "deploy", "smoke:success"]'
+jqok "annotate: text has short sha"            '.text | contains("abc1234")'
+jqok "annotate: text has run url"              ".text | contains(\"$run_url\")"
+annotate 0 abc1234def failure "$start_ms" "$run_url"; check "annotate: posts on failure" 0 $?
+jqok "annotate: failure tag"                   '.tags[2] == "smoke:failure"'
+annotate 1 abc1234def success "$start_ms" "$run_url"; check "annotate: gcx error fails" 1 $?
+annotate 0 abc1234def success notanumber "$run_url"; check "annotate: bad start_ms fails" 1 $?
+annotate 0 abc1234def success;                         check "annotate: missing args fail" 1 $?
+
 echo "--- $pass passed, $fail failed"
 [ "$fail" -eq 0 ]

@@ -41,12 +41,51 @@ jobs:
           extended: true
 
       - name: Build
+        env:
+          # Rendered as <meta name="build-sha"> for the smoke test.
+          HUGO_BUILD_SHA: ${{ github.sha }}
         run: hugo --minify --gc
 
+      # PRs only build; publishing them would put unmerged changes live.
       - name: Deploy 🚀
+        if: github.event_name == 'push'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: public
           clean: true
           single-commit: true
+
+  # After a deploy, wait until the new build is served, then run the HTTPS SM
+  # check once from its probes and fail if any of them doesn't see this build.
+  smoke:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GRAFANA_SERVER: https://markpoko.grafana.net
+      # Keep in sync with sm-checks.yaml / sm-drift.yaml.
+      GCX_REF: 2a388d08ce7759804c711c3ccd18276d97f626e1
+    steps:
+      - uses: actions/checkout@v5
+
+      # Installed first so the build overlaps the Pages publish.
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+          cache: false
+
+      - name: Install gcx
+        run: |
+          go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
+          gcx --version
+
+      - name: Wait for the new build to be live
+        run: scripts/wait-for-build.sh https://markpoko.dev/ "${GITHUB_SHA}" 600 15
+
+      - name: Smoke test with SM probes
+        env:
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+        run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml https://markpoko.dev/ "${GITHUB_SHA}"

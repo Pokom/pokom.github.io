@@ -1,4 +1,4 @@
 {{/* Commit the site was built from; the post-deploy smoke test waits for it. */}}
 {{ with os.Getenv "HUGO_BUILD_SHA" }}
-<meta name="build-sha" content="broken-{{ . }}">
+<meta name="build-sha" content="{{ . }}">
 {{ end }}

@@ -1,0 +1,128 @@
+name: PR preview
+
+# Deploys each PR to a Cloudflare Pages branch alias and smoke-tests it with
+# SM probes. "preview-smoke" is meant to be a required status check on main,
+# which makes this the merge gate. Production (deploy.yaml) is untouched.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  # Sticky preview comment on the PR.
+  pull-requests: write
+
+# One preview per PR; a new push supersedes the previous run.
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  CF_PROJECT: markpoko-blog
+  PREVIEW_BRANCH: pr-${{ github.event.pull_request.number }}
+  PREVIEW_URL: https://pr-${{ github.event.pull_request.number }}.markpoko-blog.pages.dev/
+  GRAFANA_SERVER: https://markpoko.grafana.net
+  # Keep in sync with sm-checks.yaml / sm-drift.yaml / deploy.yaml.
+  GCX_REF: 2a388d08ce7759804c711c3ccd18276d97f626e1
+
+jobs:
+  preview-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+          cache: false
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+
+      - name: Build
+        env:
+          HUGO_BUILD_SHA: ${{ github.sha }}
+        run: hugo --minify --gc --baseURL "$PREVIEW_URL"
+
+      - name: Deploy preview
+        id: deploy
+        uses: cloudflare/wrangler-action@v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.149.0"
+          command: pages deploy public --project-name=${{ env.CF_PROJECT }} --branch=${{ env.PREVIEW_BRANCH }}
+
+      # The site was built for PREVIEW_URL; fail loudly if Cloudflare put it
+      # somewhere else (e.g. a different branch-alias format).
+      - name: Check preview alias
+        id: alias
+        env:
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+        run: |
+          echo "deployment: ${{ steps.deploy.outputs.deployment-url }}"
+          echo "alias:      ${ALIAS_URL}"
+          if [ "${ALIAS_URL%/}/" != "$PREVIEW_URL" ]; then
+            echo "::error::alias ${ALIAS_URL} != expected ${PREVIEW_URL}"
+            exit 1
+          fi
+          echo "### Preview: ${PREVIEW_URL}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Install gcx
+        run: |
+          go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
+          gcx --version
+
+      - name: Wait for the preview to be live
+        id: wait
+        run: scripts/wait-for-build.sh "$PREVIEW_URL" "${GITHUB_SHA}" 300 10
+
+      - name: Smoke test preview with SM probes
+        id: smoke
+        env:
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+          SMOKE_REPORT: ${{ runner.temp }}/smoke-report.md
+        run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml "$PREVIEW_URL" "${GITHUB_SHA}"
+
+      # One comment per PR, edited on every run, pass or fail.
+      - name: Comment on PR
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOB_STATUS: ${{ job.status }}
+          DEPLOY: ${{ steps.deploy.outcome }}
+          ALIAS: ${{ steps.alias.outcome }}
+          WAIT: ${{ steps.wait.outcome }}
+          SMOKE: ${{ steps.smoke.outcome }}
+          SMOKE_REPORT: ${{ runner.temp }}/smoke-report.md
+        run: |
+          body="${RUNNER_TEMP}/preview-comment.md"
+          {
+            echo "<!-- preview-smoke -->"
+            echo "## Preview: ${JOB_STATUS}"
+            echo
+            echo "- URL: ${PREVIEW_URL}"
+            echo "- Commit: \`${HEAD_SHA:0:7}\`"
+            echo "- Run: ${RUN_URL}"
+            echo
+            echo "| Stage | Result |"
+            echo "|---|---|"
+            echo "| Deploy | ${DEPLOY:-not run} |"
+            echo "| Alias check | ${ALIAS:-not run} |"
+            echo "| Wait for build | ${WAIT:-not run} |"
+            echo "| SM smoke | ${SMOKE:-not run} |"
+            if [ -s "$SMOKE_REPORT" ]; then
+              echo
+              cat "$SMOKE_REPORT"
+            fi
+          } >"$body"
+          scripts/pr-comment.sh "$GITHUB_REPOSITORY" "$PR_NUMBER" "<!-- preview-smoke -->" "$body"

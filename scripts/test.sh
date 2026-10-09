@@ -54,6 +54,9 @@ has "smoke: sends body regexp for sha" "$work/sent.yaml" 'failIfBodyNotMatchesRe
 has "smoke: regexp contains sha"       "$work/sent.yaml" 'build-sha.*abc123'
 has "smoke: keeps other http settings" "$work/sent.yaml" 'method: GET'
 has "smoke: keeps job"                 "$work/sent.yaml" 'job: blog'
+: >"$work/report.md"
+SMOKE_REPORT="$work/report.md" smoke all-success.json; check "smoke: with report file" 0 $?
+has "smoke: report file has probe rows" "$work/report.md" '^\| Frankfurt \| success \|'
 smoke one-failure.json;  check "smoke: a failed probe fails"  1 $?
 has "smoke: names failed probe" "$work/smoke.out" 'Frankfurt'
 smoke one-timeout.json;  check "smoke: a timed-out probe fails" 1 $?
@@ -91,6 +94,37 @@ jqok "annotate: failure tag"                   '.tags[2] == "smoke:failure"'
 annotate 1 abc1234def success "$start_ms" "$run_url"; check "annotate: gcx error fails" 1 $?
 annotate 0 abc1234def success notanumber "$run_url"; check "annotate: bad start_ms fails" 1 $?
 annotate 0 abc1234def success;                         check "annotate: missing args fail" 1 $?
+
+# --- pr-comment.sh ----------------------------------------------------------
+marker='<!-- preview-smoke -->'
+comment() { # comments_fixture body_fixture [gh_exit]
+  : >"$work/gh.log"
+  : >"$work/sent-body.md"
+  PATH="$td/fake-gh:$PATH" \
+    FAKE_GH_COMMENTS="$td/comments/$1" FAKE_GH_EXIT="${3:-0}" \
+    FAKE_GH_LOG="$work/gh.log" FAKE_GH_BODY_CAPTURE="$work/sent-body.md" \
+    "$here/pr-comment.sh" Pokom/pokom.github.io 7 "$marker" "$td/comments/$2" >"$work/comment.out" 2>&1
+}
+lacks() { # name file regex
+  if grep -Eq -- "$3" "$2"; then fail=$((fail + 1)); echo "FAIL $1 (unexpected match: $3)"
+  else pass=$((pass + 1)); echo "ok   $1"; fi
+}
+
+comment none.json body.md;       check "comment: creates when none exist" 0 $?
+has   "comment: POSTs to the PR"        "$work/gh.log" '-X POST repos/Pokom/pokom.github.io/issues/7/comments'
+lacks "comment: no PATCH when creating" "$work/gh.log" 'PATCH'
+has   "comment: sends the body file"    "$work/sent-body.md" 'pr-7\.markpoko-blog'
+comment others.json body.md;     check "comment: ignores unmarked comments" 0 $?
+has   "comment: still POSTs"            "$work/gh.log" '-X POST'
+comment has-marker.json body.md; check "comment: updates marked comment" 0 $?
+has   "comment: PATCHes comment 99"     "$work/gh.log" '-X PATCH repos/Pokom/pokom.github.io/issues/comments/99'
+lacks "comment: no POST when updating"  "$work/gh.log" 'POST'
+has   "comment: lists with --paginate"  "$work/gh.log" '--paginate repos/Pokom/pokom.github.io/issues/7/comments'
+comment paginated.json body.md;  check "comment: finds marker on page 2" 0 $?
+has   "comment: PATCHes comment 77"     "$work/gh.log" 'issues/comments/77'
+comment none.json body-no-marker.md; check "comment: body without marker fails" 1 $?
+comment none.json body.md 1;     check "comment: gh failure fails"        1 $?
+"$here/pr-comment.sh" >/dev/null 2>&1; check "comment: missing args fail" 1 $?
 
 echo "--- $pass passed, $fail failed"
 [ "$fail" -eq 0 ]

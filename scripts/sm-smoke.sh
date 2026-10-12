@@ -5,7 +5,8 @@
 #
 # `gcx synthetic-monitoring checks test` exits 0 even when probes fail, so
 # this gates on the per-probe results instead. Writes a table to
-# $GITHUB_STEP_SUMMARY when set, and also to $SMOKE_REPORT when set.
+# $GITHUB_STEP_SUMMARY when set, and also to $SMOKE_REPORT when set. The raw
+# `checks test` JSON goes to $SMOKE_RESULT when set.
 #
 # Needs gcx (authenticated), yq (mikefarah) and jq on PATH.
 # Usage: scripts/sm-smoke.sh <check.yaml> <url> <sha>
@@ -30,6 +31,10 @@ TARGET="${url}?cb=${sha}" REGEXP="name=\"?build-sha\"? content=\"?${sha}" \
   "$check_file" >"$smoke_file"
 
 result="$(gcx synthetic-monitoring checks test -f "$smoke_file" -o json)"
+# Raw result (incl. adhoc_id) for sm-assistant.sh, written before any gating.
+if [ -n "${SMOKE_RESULT:-}" ]; then
+  echo "$result" >"$SMOKE_RESULT"
+fi
 
 table="$(
   echo "| Probe | Status |"

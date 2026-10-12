@@ -94,9 +94,21 @@ jobs:
         run: scripts/wait-for-build.sh https://markpoko.dev/ "${GITHUB_SHA}" 600 15
 
       - name: Smoke test with SM probes
+        id: smoke
         env:
           GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
+          SMOKE_RESULT: ${{ runner.temp }}/smoke-result.json
         run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml https://markpoko.dev/ "${GITHUB_SHA}"
+
+      # Grafana Assistant's take on the failure, in the job summary. Never
+      # changes the job result.
+      - name: Ask Grafana Assistant
+        if: ${{ failure() && steps.smoke.outcome == 'failure' }}
+        continue-on-error: true
+        env:
+          ASSISTANT_TOKEN: ${{ secrets.GRAFANA_ASSISTANT_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: scripts/sm-assistant.sh "${RUNNER_TEMP}/smoke-result.json"
 
       # Mark the deploy window in Grafana, whether or not the smoke test
       # passed. A failure here shouldn't fail the deploy.

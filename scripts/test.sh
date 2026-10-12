@@ -63,6 +63,12 @@ smoke one-timeout.json;  check "smoke: a timed-out probe fails" 1 $?
 smoke no-probes.json;    check "smoke: no results fails"      1 $?
 smoke all-success.json 1; check "smoke: gcx error fails"      1 $?
 "$here/sm-smoke.sh" >/dev/null 2>&1; check "smoke: missing args fail" 1 $?
+rm -f "$work/result.json"
+SMOKE_RESULT="$work/result.json" smoke all-success.json; check "smoke: with result file" 0 $?
+has "smoke: result file is the raw json" "$work/result.json" '"adhoc_id"'
+rm -f "$work/result.json"
+SMOKE_RESULT="$work/result.json" smoke one-failure.json; check "smoke: failure with result file" 1 $?
+has "smoke: result file written on failure" "$work/result.json" '"Frankfurt"'
 
 # --- grafana-annotate.sh ---------------------------------------------------
 annotate() { # gcx_exit args...
@@ -125,6 +131,47 @@ has   "comment: PATCHes comment 77"     "$work/gh.log" 'issues/comments/77'
 comment none.json body-no-marker.md; check "comment: body without marker fails" 1 $?
 comment none.json body.md 1;     check "comment: gh failure fails"        1 $?
 "$here/pr-comment.sh" >/dev/null 2>&1; check "comment: missing args fail" 1 $?
+
+# --- sm-assistant.sh --------------------------------------------------------
+assistant() { # result_fixture response_fixture [gcx_exit]; env: ASSISTANT_TOKEN
+  : >"$work/summary.md"
+  : >"$work/gcx.log"
+  PATH="$td/fake-gcx:$PATH" \
+    FAKE_GCX_OUTPUT="$td/assistant/$2" FAKE_GCX_EXIT="${3:-0}" FAKE_GCX_LOG="$work/gcx.log" \
+    GRAFANA_TOKEN=sm-tok ASSISTANT_TOKEN="${ASSISTANT_TOKEN-asst-tok}" \
+    GITHUB_SHA=abc1234def RUN_URL="https://github.com/Pokom/pokom.github.io/actions/runs/1" \
+    GITHUB_STEP_SUMMARY="$work/summary.md" \
+    "$here/sm-assistant.sh" "$td/smoke/$1" >"$work/assistant.out" 2>&1
+}
+
+assistant one-failure.json completed.json; check "assistant: completed" 0 $?
+has   "assistant: uses its own token"       "$work/gcx.log" $'^asst-tok\tassistant\tprompt\t'
+has   "assistant: single-document json"     "$work/gcx.log" $'\t--json\t--no-stream\t'
+has   "assistant: prompt has failing probe" "$work/gcx.log" 'Frankfurt: failure'
+lacks "assistant: prompt omits passing"     "$work/gcx.log" 'Seoul: success'
+has   "assistant: prompt has adhoc id"      "$work/gcx.log" '\{type="adhoc"\} \|~ "2" \| json'
+has   "assistant: prompt has target"        "$work/gcx.log" 'markpoko\.dev/\?cb=abc'
+has   "assistant: prompt has sha"           "$work/gcx.log" 'abc1234def'
+has   "assistant: prompt has run url"       "$work/gcx.log" 'actions/runs/1'
+has   "assistant: prompt says read only"    "$work/gcx.log" 'Read only'
+has   "assistant: summary heading"          "$work/summary.md" '^### Grafana Assistant \(generated\)$'
+has   "assistant: summary has reply"        "$work/summary.md" 'Frankfurt received HTTP 503'
+has   "assistant: summary has context id"   "$work/summary.md" 'ctx-42'
+
+assistant one-failure.json failed.json 1; check "assistant: failed run exits 0" 0 $?
+has   "assistant: notes the error"          "$work/summary.md" 'assistant prompt failed: agent run failed'
+has   "assistant: warns"                    "$work/assistant.out" '::warning::'
+assistant one-failure.json failed.json 0; check "assistant: non-completed status exits 0" 0 $?
+has   "assistant: notes non-completed"      "$work/summary.md" 'assistant prompt failed'
+lacks "assistant: no reply on failure"      "$work/summary.md" 'Context ID'
+
+ASSISTANT_TOKEN='' assistant one-failure.json completed.json; check "assistant: no token exits 0" 0 $?
+has   "assistant: notices missing token"    "$work/assistant.out" '::notice::.*ASSISTANT_TOKEN'
+lacks "assistant: no call without token"    "$work/gcx.log" '.'
+assistant all-success.json completed.json; check "assistant: all passed exits 0" 0 $?
+lacks "assistant: no call when all passed"  "$work/gcx.log" '.'
+"$here/sm-assistant.sh" >/dev/null 2>&1; check "assistant: missing args fail" 1 $?
+"$here/sm-assistant.sh" "$work/nope.json" >/dev/null 2>&1; check "assistant: missing file fails" 1 $?
 
 echo "--- $pass passed, $fail failed"
 [ "$fail" -eq 0 ]

@@ -1,0 +1,1 @@
+{"$schema":"https://assistant.example/schemas/ResponseBodyShareChatResponse.json","data":{"sharedAt":"2026-10-13T00:14:11Z","sharedChatId":"shared-7"},"status":"success"}

@@ -133,16 +133,20 @@ comment none.json body.md 1;     check "comment: gh failure fails"        1 $?
 "$here/pr-comment.sh" >/dev/null 2>&1; check "comment: missing args fail" 1 $?
 
 # --- sm-assistant.sh --------------------------------------------------------
-assistant() { # result_fixture response_fixture [gcx_exit]; env: ASSISTANT_TOKEN
+assistant() { # result_fixture response_fixture [gcx_exit]; env: ASSISTANT_TOKEN, SHARE_FIXTURE, SHARE_EXIT
   : >"$work/summary.md"
+  : >"$work/report.md"
   : >"$work/gcx.log"
   PATH="$td/fake-gcx:$PATH" \
     FAKE_GCX_OUTPUT="$td/assistant/$2" FAKE_GCX_EXIT="${3:-0}" FAKE_GCX_LOG="$work/gcx.log" \
+    FAKE_GCX_API_OUTPUT="$td/assistant/${SHARE_FIXTURE:-share.json}" FAKE_GCX_API_EXIT="${SHARE_EXIT:-0}" \
+    GRAFANA_SERVER=https://example.grafana.net/ \
     GRAFANA_TOKEN=sm-tok ASSISTANT_TOKEN="${ASSISTANT_TOKEN-asst-tok}" \
     GITHUB_SHA=abc1234def RUN_URL="https://github.com/Pokom/pokom.github.io/actions/runs/1" \
-    GITHUB_STEP_SUMMARY="$work/summary.md" \
+    GITHUB_STEP_SUMMARY="$work/summary.md" ASSISTANT_REPORT="$work/report.md" \
     "$here/sm-assistant.sh" "$td/smoke/$1" >"$work/assistant.out" 2>&1
 }
+share_link='\(https://example\.grafana\.net/a/grafana-assistant-app/chats/shared/shared-7\)'
 
 assistant one-failure.json completed.json; check "assistant: completed" 0 $?
 has   "assistant: uses its own token"       "$work/gcx.log" $'^asst-tok\tassistant\tprompt\t'
@@ -157,6 +161,19 @@ has   "assistant: prompt says read only"    "$work/gcx.log" 'Read only'
 has   "assistant: summary heading"          "$work/summary.md" '^### Grafana Assistant \(generated\)$'
 has   "assistant: summary has reply"        "$work/summary.md" 'Frankfurt received HTTP 503'
 has   "assistant: summary has context id"   "$work/summary.md" 'ctx-42'
+has   "assistant: shares the chat as itself" "$work/gcx.log" $'^asst-tok\tapi\t/api/plugins/grafana-assistant-app/resources/api/v1/chats/ctx-42/share\t-X\tPOST'
+has   "assistant: summary has shared link"  "$work/summary.md" "$share_link"
+has   "assistant: report heading"           "$work/report.md" '^### Grafana Assistant \(generated\)$'
+has   "assistant: report has reply"         "$work/report.md" 'Frankfurt received HTTP 503'
+has   "assistant: report has shared link"   "$work/report.md" "\[Open in Grafana Assistant\]$share_link"
+
+SHARE_EXIT=1 assistant one-failure.json completed.json; check "assistant: share failure exits 0" 0 $?
+has   "assistant: reply kept on share fail" "$work/report.md" 'Frankfurt received HTTP 503'
+lacks "assistant: no link on share fail"    "$work/report.md" 'chats/shared'
+has   "assistant: notes share failure"      "$work/report.md" 'share link unavailable'
+has   "assistant: warns on share failure"   "$work/assistant.out" '::warning::.*share'
+SHARE_FIXTURE=completed.json assistant one-failure.json completed.json; check "assistant: share without id exits 0" 0 $?
+lacks "assistant: no link without id"       "$work/report.md" 'chats/shared'
 
 assistant one-failure.json failed.json 1; check "assistant: failed run exits 0" 0 $?
 has   "assistant: notes the error"          "$work/summary.md" 'assistant prompt failed: agent run failed'
@@ -164,6 +181,8 @@ has   "assistant: warns"                    "$work/assistant.out" '::warning::'
 assistant one-failure.json failed.json 0; check "assistant: non-completed status exits 0" 0 $?
 has   "assistant: notes non-completed"      "$work/summary.md" 'assistant prompt failed'
 lacks "assistant: no reply on failure"      "$work/summary.md" 'Context ID'
+has   "assistant: report notes failure"     "$work/report.md" 'assistant prompt failed'
+lacks "assistant: no share on failure"      "$work/gcx.log" $'\tapi\t'
 
 ASSISTANT_TOKEN='' assistant one-failure.json completed.json; check "assistant: no token exits 0" 0 $?
 has   "assistant: notices missing token"    "$work/assistant.out" '::notice::.*ASSISTANT_TOKEN'

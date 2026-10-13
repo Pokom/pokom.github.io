@@ -4,8 +4,13 @@
 # body to $FAKE_GCX_CAPTURE_DATA, and the arguments to $FAKE_GCX_CAPTURE_ARGS,
 # so tests can assert on what the script sent. $FAKE_GCX_LOG gets one line
 # per call: GRAFANA_TOKEN, a tab, then the arguments separated by tabs
-# (newlines in them logged as \n).
+# (newlines in them logged as \n). For `gcx api` calls, $FAKE_GCX_API_OUTPUT
+# and $FAKE_GCX_API_EXIT, when set, take the place of the two above.
 set -euo pipefail
+if [ "${1:-}" = api ] && [ -n "${FAKE_GCX_API_OUTPUT:-}" ]; then
+  FAKE_GCX_OUTPUT="$FAKE_GCX_API_OUTPUT"
+  FAKE_GCX_EXIT="${FAKE_GCX_API_EXIT:-0}"
+fi
 if [ -n "${FAKE_GCX_CAPTURE_ARGS:-}" ]; then
   printf '%s\n' "$@" >"$FAKE_GCX_CAPTURE_ARGS"
 fi

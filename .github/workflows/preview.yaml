@@ -91,13 +91,14 @@ jobs:
           SMOKE_RESULT: ${{ runner.temp }}/smoke-result.json
         run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml "$PREVIEW_URL" "${GITHUB_SHA}"
 
-      # Grafana Assistant's take on the failure, in the job summary. Never
-      # changes the job result.
+      # Grafana Assistant's take on the failure, in the job summary and the
+      # PR comment. Never changes the job result.
       - name: Ask Grafana Assistant
         if: ${{ failure() && steps.smoke.outcome == 'failure' }}
         continue-on-error: true
         env:
           ASSISTANT_TOKEN: ${{ secrets.GRAFANA_ASSISTANT_TOKEN }}
+          ASSISTANT_REPORT: ${{ runner.temp }}/assistant-report.md
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: scripts/sm-assistant.sh "${RUNNER_TEMP}/smoke-result.json"
 
@@ -115,6 +116,7 @@ jobs:
           WAIT: ${{ steps.wait.outcome }}
           SMOKE: ${{ steps.smoke.outcome }}
           SMOKE_REPORT: ${{ runner.temp }}/smoke-report.md
+          ASSISTANT_REPORT: ${{ runner.temp }}/assistant-report.md
         run: |
           body="${RUNNER_TEMP}/preview-comment.md"
           {
@@ -134,6 +136,10 @@ jobs:
             if [ -s "$SMOKE_REPORT" ]; then
               echo
               cat "$SMOKE_REPORT"
+            fi
+            if [ -s "$ASSISTANT_REPORT" ]; then
+              echo
+              cat "$ASSISTANT_REPORT"
             fi
           } >"$body"
           scripts/pr-comment.sh "$GITHUB_REPOSITORY" "$PR_NUMBER" "<!-- preview-smoke -->" "$body"

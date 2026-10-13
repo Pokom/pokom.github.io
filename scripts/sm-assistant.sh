@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # After a failed sm-smoke.sh run, ask Grafana Assistant why the probes failed
-# and write its answer to $GITHUB_STEP_SUMMARY. The prompt carries the run's
-# context and the LogQL that finds the probes' own ad-hoc result logs, so the
-# Assistant can read them itself.
+# and write its answer to $GITHUB_STEP_SUMMARY, and to $ASSISTANT_REPORT when
+# set (preview.yaml appends that to the PR comment). The prompt carries the
+# run's context and the LogQL that finds the probes' own ad-hoc result logs,
+# so the Assistant can read them itself. The chat is then shared, so anyone
+# in the stack can open it from the link (the service account owns it).
 #
 # Runs as $ASSISTANT_TOKEN (a Viewer service account) instead of
 # $GRAFANA_TOKEN. Diagnostic only: a missing token or a failed prompt is
@@ -55,27 +57,51 @@ anything."
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
+note() { # message: italic line in the report, plus a workflow warning
+  printf '_%s_\n' "$1" >>"$work/report.md"
+  echo "::warning::$1"
+}
+
 {
   echo "### Grafana Assistant (generated)"
   echo
-} >>"$summary"
+} >"$work/report.md"
 status=0
 GRAFANA_TOKEN="$ASSISTANT_TOKEN" gcx assistant prompt "$prompt" \
   --json --no-stream --timeout "${ASSISTANT_TIMEOUT:-180}" \
   >"$work/reply.json" 2>"$work/reply.err" || status=$?
 
 if [ "$status" -eq 0 ] && [ "$(jq -r '.status' "$work/reply.json" 2>/dev/null)" = completed ]; then
+  context_id="$(jq -r '.contextId' "$work/reply.json")"
   {
     jq -r '.response' "$work/reply.json"
     echo
-    echo "Context ID: \`$(jq -r '.contextId' "$work/reply.json")\`"
-  } >>"$summary"
-  exit 0
+  } >>"$work/report.md"
+
+  # Sharing the same chat again returns the same shared ID.
+  shared_id=""
+  if GRAFANA_TOKEN="$ASSISTANT_TOKEN" gcx api \
+    "/api/plugins/grafana-assistant-app/resources/api/v1/chats/${context_id}/share" -X POST \
+    >"$work/share.json" 2>"$work/share.err"; then
+    shared_id="$(jq -r '.data.sharedChatId // empty' "$work/share.json" 2>/dev/null || true)"
+  fi
+  if [ -n "$shared_id" ]; then
+    echo "[Open in Grafana Assistant](${GRAFANA_SERVER%/}/a/grafana-assistant-app/chats/shared/${shared_id})" >>"$work/report.md"
+  else
+    reason="$(head -n 1 "$work/share.err" | cut -c 1-300)"
+    note "share link unavailable: ${reason:-no sharedChatId in response}"
+  fi
+  echo >>"$work/report.md"
+  echo "Context ID: \`${context_id}\`" >>"$work/report.md"
+else
+  reason="$(jq -r '.error // empty' "$work/reply.json" 2>/dev/null || true)"
+  if [ -z "$reason" ]; then
+    reason="$(head -n 1 "$work/reply.err" | cut -c 1-300)"
+  fi
+  note "assistant prompt failed: ${reason:-exit ${status}}"
 fi
 
-reason="$(jq -r '.error // empty' "$work/reply.json" 2>/dev/null || true)"
-if [ -z "$reason" ]; then
-  reason="$(head -n 1 "$work/reply.err" | cut -c 1-300)"
+cat "$work/report.md" >>"$summary"
+if [ -n "${ASSISTANT_REPORT:-}" ]; then
+  cp "$work/report.md" "$ASSISTANT_REPORT"
 fi
-echo "_assistant prompt failed: ${reason:-exit ${status}}_" >>"$summary"
-echo "::warning::assistant prompt failed: ${reason:-exit ${status}}"

@@ -73,47 +73,43 @@ jobs:
       contents: read
     env:
       GRAFANA_SERVER: https://markpoko.grafana.net
-      # Keep in sync with sm-checks.yaml / sm-drift.yaml.
-      GCX_REF: 2a388d08ce7759804c711c3ccd18276d97f626e1
     steps:
       - uses: actions/checkout@v5
 
-      # Installed first so the build overlaps the Pages publish.
-      - uses: actions/setup-go@v6
-        with:
-          go-version: "1.26.x"
-          cache: false
-
-      - name: Install gcx
-        id: gcx
-        run: |
-          go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
-          gcx --version
-
-      - name: Wait for the new build to be live
-        run: scripts/wait-for-build.sh https://markpoko.dev/ "${GITHUB_SHA}" 600 15
-
+      # Installs gcx, waits for the new build to be served, then runs the
+      # check once from its probes. The target is the check's own
+      # (https://markpoko.dev). gcx stays on PATH for the steps after this.
       - name: Smoke test with SM probes
         id: smoke
-        env:
-          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
-          SMOKE_RESULT: ${{ runner.temp }}/smoke-result.json
-        run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml https://markpoko.dev/ "${GITHUB_SHA}"
+        # feat/smoke-tests; move to a release tag once one is published.
+        uses: grafana/synthetic-monitoring-action@ff64b1448aec188b0111d1a156da94bd60eddc91
+        with:
+          mode: smoke
+          grafana-stack-url: ${{ env.GRAFANA_SERVER }}
+          sm-token: ${{ secrets.GRAFANA_SM_TOKEN }}
+          gcx-version: v1.7.1
+          smoke-check-file: sm-checks/blog-103862.yaml
+          smoke-cache-bust: ${{ github.sha }}
+          smoke-body-regexp: name="?build-sha"? content="?${{ github.sha }}
+          smoke-wait-timeout: "600"
+          smoke-wait-interval: "15"
 
       # Grafana Assistant's take on the failure, in the job summary. Never
-      # changes the job result.
+      # changes the job result. Skipped when the site never became ready: no
+      # check ran, so there are no probe logs to read.
       - name: Ask Grafana Assistant
-        if: ${{ failure() && steps.smoke.outcome == 'failure' }}
+        if: ${{ failure() && steps.smoke.outcome == 'failure' && steps.smoke.outputs.smoke-result != '' }}
         continue-on-error: true
         env:
           ASSISTANT_TOKEN: ${{ secrets.GRAFANA_ASSISTANT_TOKEN }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: scripts/sm-assistant.sh "${RUNNER_TEMP}/smoke-result.json"
+          SMOKE_RESULT: ${{ steps.smoke.outputs.smoke-result }}
+        run: scripts/sm-assistant.sh "$SMOKE_RESULT"
 
       # Mark the deploy window in Grafana, whether or not the smoke test
       # passed. A failure here shouldn't fail the deploy.
       - name: Annotate deploy in Grafana
-        if: ${{ always() && steps.gcx.outcome == 'success' }}
+        if: ${{ always() && steps.smoke.outcome != 'skipped' }}
         continue-on-error: true
         env:
           GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}

@@ -22,8 +22,6 @@ env:
   PREVIEW_BRANCH: pr-${{ github.event.pull_request.number }}
   PREVIEW_URL: https://pr-${{ github.event.pull_request.number }}.markpoko-blog.pages.dev/
   GRAFANA_SERVER: https://markpoko.grafana.net
-  # Keep in sync with sm-checks.yaml / sm-drift.yaml / deploy.yaml.
-  GCX_REF: 2a388d08ce7759804c711c3ccd18276d97f626e1
 
 jobs:
   preview-smoke:
@@ -33,11 +31,6 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
-
-      - uses: actions/setup-go@v6
-        with:
-          go-version: "1.26.x"
-          cache: false
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -74,33 +67,38 @@ jobs:
           fi
           echo "### Preview: ${PREVIEW_URL}" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Install gcx
-        run: |
-          go install "github.com/grafana/gcx/cmd/gcx@${GCX_REF}"
-          gcx --version
-
-      - name: Wait for the preview to be live
-        id: wait
-        run: scripts/wait-for-build.sh "$PREVIEW_URL" "${GITHUB_SHA}" 300 10
-
+      # Installs gcx, waits for the preview to serve this build, then runs the
+      # check once from its probes. smoke-comment is off because the comment
+      # below embeds the report. gcx stays on PATH for the steps after this.
       - name: Smoke test preview with SM probes
         id: smoke
-        env:
-          GRAFANA_TOKEN: ${{ secrets.GRAFANA_SM_TOKEN }}
-          SMOKE_REPORT: ${{ runner.temp }}/smoke-report.md
-          SMOKE_RESULT: ${{ runner.temp }}/smoke-result.json
-        run: scripts/sm-smoke.sh sm-checks/blog-103862.yaml "$PREVIEW_URL" "${GITHUB_SHA}"
+        # feat/smoke-tests; move to a release tag once one is published.
+        uses: grafana/synthetic-monitoring-action@ff64b1448aec188b0111d1a156da94bd60eddc91
+        with:
+          mode: smoke
+          grafana-stack-url: ${{ env.GRAFANA_SERVER }}
+          sm-token: ${{ secrets.GRAFANA_SM_TOKEN }}
+          gcx-version: v1.7.1
+          smoke-check-file: sm-checks/blog-103862.yaml
+          smoke-target: ${{ env.PREVIEW_URL }}
+          smoke-cache-bust: ${{ github.sha }}
+          smoke-body-regexp: name="?build-sha"? content="?${{ github.sha }}
+          smoke-wait-timeout: "300"
+          smoke-wait-interval: "10"
+          smoke-comment: "false"
 
       # Grafana Assistant's take on the failure, in the job summary and the
-      # PR comment. Never changes the job result.
+      # PR comment. Never changes the job result. Skipped when the preview
+      # never became ready: no check ran, so there are no probe logs to read.
       - name: Ask Grafana Assistant
-        if: ${{ failure() && steps.smoke.outcome == 'failure' }}
+        if: ${{ failure() && steps.smoke.outcome == 'failure' && steps.smoke.outputs.smoke-result != '' }}
         continue-on-error: true
         env:
           ASSISTANT_TOKEN: ${{ secrets.GRAFANA_ASSISTANT_TOKEN }}
           ASSISTANT_REPORT: ${{ runner.temp }}/assistant-report.md
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: scripts/sm-assistant.sh "${RUNNER_TEMP}/smoke-result.json"
+          SMOKE_RESULT: ${{ steps.smoke.outputs.smoke-result }}
+        run: scripts/sm-assistant.sh "$SMOKE_RESULT"
 
       # One comment per PR, edited on every run, pass or fail.
       - name: Comment on PR
@@ -113,9 +111,8 @@ jobs:
           JOB_STATUS: ${{ job.status }}
           DEPLOY: ${{ steps.deploy.outcome }}
           ALIAS: ${{ steps.alias.outcome }}
-          WAIT: ${{ steps.wait.outcome }}
           SMOKE: ${{ steps.smoke.outcome }}
-          SMOKE_REPORT: ${{ runner.temp }}/smoke-report.md
+          SMOKE_REPORT: ${{ steps.smoke.outputs.smoke-report }}
           ASSISTANT_REPORT: ${{ runner.temp }}/assistant-report.md
         run: |
           body="${RUNNER_TEMP}/preview-comment.md"
@@ -131,7 +128,6 @@ jobs:
             echo "|---|---|"
             echo "| Deploy | ${DEPLOY:-not run} |"
             echo "| Alias check | ${ALIAS:-not run} |"
-            echo "| Wait for build | ${WAIT:-not run} |"
             echo "| SM smoke | ${SMOKE:-not run} |"
             if [ -s "$SMOKE_REPORT" ]; then
               echo

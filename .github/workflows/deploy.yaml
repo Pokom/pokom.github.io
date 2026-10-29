@@ -82,13 +82,15 @@ jobs:
       - name: Smoke test with SM probes
         id: smoke
         # feat/smoke-tests; move to a release tag once one is published.
-        uses: grafana/synthetic-monitoring-action@ff64b1448aec188b0111d1a156da94bd60eddc91
+        uses: grafana/synthetic-monitoring-action@3c763b1572c19bef6665cd73bd25804c968fe493
         with:
           mode: smoke
           grafana-stack-url: ${{ env.GRAFANA_SERVER }}
           sm-token: ${{ secrets.GRAFANA_SM_TOKEN }}
           gcx-version: v1.7.1
-          smoke-check-file: sm-checks/blog-103862.yaml
+          smoke-check-files: |
+            sm-checks/blog-103862.yaml
+            sm-checks/blog-120301.yaml
           smoke-cache-bust: ${{ github.sha }}
           smoke-body-regexp: name="?build-sha"? content="?${{ github.sha }}
           smoke-wait-timeout: "600"

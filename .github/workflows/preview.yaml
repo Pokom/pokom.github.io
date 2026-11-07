@@ -1,8 +1,10 @@
 name: PR preview
 
-# Deploys each PR to a Cloudflare Pages branch alias and smoke-tests it with
-# SM probes. "preview-smoke" is meant to be a required status check on main,
-# which makes this the merge gate. Production (deploy.yaml) is untouched.
+# Deploys each PR to a Cloudflare Pages branch alias so a change can be checked
+# before it merges. The SM smoke test is removed for now because
+# grafana/synthetic-monitoring-action is private: an action that can't be
+# resolved fails the whole job at "Set up job", before any step runs, so even
+# the build and deploy never ran. Production (deploy.yaml) is untouched.
 on:
   pull_request:
     branches: [main]
@@ -21,7 +23,6 @@ env:
   CF_PROJECT: markpoko-blog
   PREVIEW_BRANCH: pr-${{ github.event.pull_request.number }}
   PREVIEW_URL: https://pr-${{ github.event.pull_request.number }}.markpoko-blog.pages.dev/
-  GRAFANA_SERVER: https://markpoko.grafana.net
 
 jobs:
   preview-smoke:
@@ -67,43 +68,6 @@ jobs:
           fi
           echo "### Preview: ${PREVIEW_URL}" >> "$GITHUB_STEP_SUMMARY"
 
-      # Installs gcx, waits for the preview to serve this build, then runs the
-      # check once from its probes. smoke-comment is off because the comment
-      # below embeds the report. gcx stays on PATH for the steps after this.
-      - name: Smoke test preview with SM probes
-        id: smoke
-        # feat/smoke-tests; move to a release tag once one is published.
-        uses: grafana/synthetic-monitoring-action@3c763b1572c19bef6665cd73bd25804c968fe493
-        with:
-          mode: smoke
-          grafana-stack-url: ${{ env.GRAFANA_SERVER }}
-          sm-token: ${{ secrets.GRAFANA_SM_TOKEN }}
-          gcx-version: v1.7.1
-          # smoke-target replaces both checks' targets with the preview URL, so
-          # they probe the same page; two checks here exercise the multi-check path.
-          smoke-check-files: |
-            sm-checks/blog-103862.yaml
-            sm-checks/blog-120301.yaml
-          smoke-target: ${{ env.PREVIEW_URL }}
-          smoke-cache-bust: ${{ github.sha }}
-          smoke-body-regexp: name="?build-sha"? content="?${{ github.sha }}
-          smoke-wait-timeout: "300"
-          smoke-wait-interval: "10"
-          smoke-comment: "false"
-
-      # Grafana Assistant's take on the failure, in the job summary and the
-      # PR comment. Never changes the job result. Skipped when the preview
-      # never became ready: no check ran, so there are no probe logs to read.
-      - name: Ask Grafana Assistant
-        if: ${{ failure() && steps.smoke.outcome == 'failure' && steps.smoke.outputs.smoke-result != '' }}
-        continue-on-error: true
-        env:
-          ASSISTANT_TOKEN: ${{ secrets.GRAFANA_ASSISTANT_TOKEN }}
-          ASSISTANT_REPORT: ${{ runner.temp }}/assistant-report.md
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          SMOKE_RESULT: ${{ steps.smoke.outputs.smoke-result }}
-        run: scripts/sm-assistant.sh "$SMOKE_RESULT"
-
       # One comment per PR, edited on every run, pass or fail.
       - name: Comment on PR
         if: ${{ always() }}
@@ -115,9 +79,6 @@ jobs:
           JOB_STATUS: ${{ job.status }}
           DEPLOY: ${{ steps.deploy.outcome }}
           ALIAS: ${{ steps.alias.outcome }}
-          SMOKE: ${{ steps.smoke.outcome }}
-          SMOKE_REPORT: ${{ steps.smoke.outputs.smoke-report }}
-          ASSISTANT_REPORT: ${{ runner.temp }}/assistant-report.md
         run: |
           body="${RUNNER_TEMP}/preview-comment.md"
           {
@@ -132,14 +93,5 @@ jobs:
             echo "|---|---|"
             echo "| Deploy | ${DEPLOY:-not run} |"
             echo "| Alias check | ${ALIAS:-not run} |"
-            echo "| SM smoke | ${SMOKE:-not run} |"
-            if [ -s "$SMOKE_REPORT" ]; then
-              echo
-              cat "$SMOKE_REPORT"
-            fi
-            if [ -s "$ASSISTANT_REPORT" ]; then
-              echo
-              cat "$ASSISTANT_REPORT"
-            fi
           } >"$body"
           scripts/pr-comment.sh "$GITHUB_REPOSITORY" "$PR_NUMBER" "<!-- preview-smoke -->" "$body"

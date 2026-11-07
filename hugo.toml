@@ -53,8 +53,8 @@ name = "about"
 url = "/page/about"
 
 [[params.menu]]
-name = "game"
-url = "/page/game"
+name = "games"
+url = "/games"
 
 [[params.menu]]
 name = "how this is built"

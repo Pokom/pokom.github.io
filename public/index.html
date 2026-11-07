@@ -3,7 +3,7 @@
   dir="ltr">
 
 <head>
-	<meta name="generator" content="Hugo 0.157.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.165.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
@@ -72,6 +72,10 @@
     
 
 
+   
+    
+
+
 
 
 </head>
@@ -108,6 +112,16 @@
             version: "1.0.0",
             environment: "production",
           },
+          ignoreErrors: [
+            
+            /^ResizeObserver loop limit exceeded$/,
+            /^ResizeObserver loop completed with undelivered notifications$/,
+            
+            /^Script error\.$/,
+            
+            /chrome-extension:\/\//,
+            /moz-extension:\/\//,
+          ],
         });
 
         
@@ -187,6 +201,145 @@
     
 
     
+        <p class="line-date">10 Oct 2026 </p>
+    
+
+    <div>
+        <p class="line-title">
+            <a href="/posts/the-case-against-product-engineering/">
+                Product Engineering
+            </a>
+        </p>
+
+        
+        <p class="line-summary"> <p>A new title has been popping in conversations that I&rsquo;m not terribly familiar with: Product Engineering.
+<a href="https://trends.google.com/explore?q=Product%20Engineer&amp;date=all&amp;geo=US">Google trends</a> shows that it started to really pop up January 2022.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" style="--w: 1011; --h: 462;">
+        <img loading="lazy" alt="Google Trends interest over time for &ldquo;Product Engineer&rdquo; in the US, 2004 to present" src="/posts/the-case-against-product-engineering/google-trends.png" width="1011" height="462">
+    </div>
+
+    
+</figure>
+</p>
+<p>It&rsquo;s relatively new to me, so let&rsquo;s see who&rsquo;s written about it:</p>
+<ul>
+<li>PostHog: <a href="https://posthog.com/product-engineer/what-is-a-product-engineer">https://posthog.com/product-engineer/what-is-a-product-engineer</a>
+<ul>
+<li>They quote incident.io, which I can&rsquo;t actually find the source</li>
+<li><a href="https://posthog.com/blog/why-product-engineering-is-so-fun">https://posthog.com/blog/why-product-engineering-is-so-fun</a></li>
+</ul>
+</li>
+<li>Shopify(2018): <a href="https://sherifmansour.medium.com/product-engineers-f424da766871">https://sherifmansour.medium.com/product-engineers-f424da766871</a></li>
+<li>Lee Robison(<a href="https://leerob.com/product-engineers">https://leerob.com/product-engineers</a>)</li>
+<li>Pragmatic Engineer(2019): <a href="https://blog.pragmaticengineer.com/the-product-minded-engineer/#tips-to-become-a-more-product-minded-engineer">https://blog.pragmaticengineer.com/the-product-minded-engineer/#tips-to-become-a-more-product-minded-engineer</a></li>
+</ul>
+<p>A lot went right, but a lot went wrong.
+In my opinion, the biggest mistake made was thinking rebranding some roles as DevOps engineers without changing the underlying culture.
+I write this to provide myself a framework that hopefully amplifies the lessons learned from DeVops practices, without going through the pain of having to explain a new job title/function/</p> </p>
+        
+    </div>
+</div>
+    
+    <div class="post-line">
+
+    
+
+    
+        <p class="line-date">1 May 2026 </p>
+    
+
+    <div>
+        <p class="line-title">
+            <a href="/posts/proving-value-in-the-agentic-era/">
+                Proving Value in the Agentic Era
+            </a>
+        </p>
+
+        
+        <p class="line-summary"> <p>A recent article came out from Uber where they burned through a years worth of budget in the first four months of the year.
+The associated hackernews thread on is quite worthwhile to read through.
+Agents, and agentic coding, has proven to be more divisive in 6 months than k8s has in almost a decade of it&rsquo;s existence.
+Proponents of it think the value is self explanatory and requires no further proof.
+Nay sayers claim not only is the spend on tokens shameful, the resulting work requires 10x the time to clean up.
+Like most things, the truth is somewhere between the two.
+But there&rsquo;s something really important that&rsquo;s worthwhile considering: Could you prove today that agents have provided value in your day to day life?</p> </p>
+        
+    </div>
+</div>
+    
+    <div class="post-line">
+
+    
+
+    
+        <p class="line-date">9 Apr 2026 </p>
+    
+
+    <div>
+        <p class="line-title">
+            <a href="/posts/agentic-research/">
+                Agentic Research
+            </a>
+        </p>
+
+        
+        <p class="line-summary"> <p>In my previous post about <a href="http://localhost:1313/posts/effective-agentic-coding/">Effective Agentic Coding</a>, I listed out five distinct workflows that I find myself falling into.
+The first topic is using agents to researching topics.
+For many folks, this can be shocking as agentics are exceptionally confident and will tell you what you would like.
+They search the web faster and analyzing text and synthesizing it into something usable.</p>
+<h2 class="heading" id="first-must-come-the-problem">
+  First must come the problem
+  <a class="anchor" href="#first-must-come-the-problem">#</a>
+</h2>
+<p>I work on the <a href="https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/">Synthetic Monitoring</a> product which started offering browser checks about a year ago(May 2025).
+Browser checks had a healthy adoption rate, and with that has come growing pains.</p> </p>
+        
+    </div>
+</div>
+    
+    <div class="post-line">
+
+    
+
+    
+        <p class="line-date">16 Mar 2026 </p>
+    
+
+    <div>
+        <p class="line-title">
+            <a href="/posts/claude-in-bg3/">
+                Claude In Balders Gate 3
+            </a>
+        </p>
+
+        
+        <p class="line-summary"> <p>This is very clearly in the &ldquo;But why?&rdquo; category of things I&rsquo;ve done, but follow me for a minute.
+Most days I only end up have a few hours total of spare time for any of my hobbies.
+This makes it hard for me to invest the amount of time I used to into games.
+Balders Gate 3 is</p> </p>
+        
+    </div>
+</div>
+    
+    <div class="post-line">
+
+    
+
+    
         <p class="line-date">16 Mar 2026 </p>
     
 
@@ -214,112 +367,6 @@ After ~4 months of using agentic tools, I&rsquo;ve started to recognize distinct
     </div>
 </div>
     
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">30 Sep 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/arch/">
-                One Month with Arch
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> <p>I had a laptop refresh at work and decided to try running <a href="https://archlinux.org/">Arch Linux</a> for the first time.
-I&rsquo;ve used Ubuntu for workstations at a few other jobs, but not all of the places I worked supported this.
-The challenge I had for myself was to get a basic setup within a weeks time and then decide if I wanted to switch back to Ubuntu.
-A week turned into a month, but here&rsquo;s some of my experiences.</p> </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">23 Jul 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/grpc/">
-                gRPC
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> <p>I&rsquo;ve heard of gRPC for quite some time, ran many applications in my life as a platform engineer that had gRPC endpoints, but never directly contributed to it.
-gRPC is coming up more frequently now that I&rsquo;m working as a backend engineer, and I feel like I need to dive deeper into the fundamentals.
-The code is intuitive enough to update existing handlers.
-But what happens if you need to create a new handler?
-Or if you need to update how <a href="github.com/grafana/synthetic-monitoring-agent/issues/738">the client is initialized</a>?</p> </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">14 Jul 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/tyranny-of-pencil-and-paper/">
-                Tyranny of Pencil and Paper
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> <p>Windsurfer being aqcuired by <del>OpenAI</del> Cognition is making me reconsider the way I work.
-I have been skeptical that LLM&rsquo;s will be the next major revolution in technology.
-Experience has provided enough context to have heard many other technologies claim they&rsquo;ll usher in a new era of tech.
-There&rsquo;s still this small pit of fear that I am wrong on this and miss out on a potentially career ending mistake.</p> </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">27 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/faro/">
-                Faro
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> <blockquote>
-<p><strong>Disclaimer</strong>! I work at Grafana Labs and am writing this in my personal time to explore the product</p>
-</blockquote>
-<p>I want to monitor traffic to this site and do it in a way that maintains privacy.
-In the past I&rsquo;ve used Google Analytics, which I&rsquo;m opting not to use due to the amount of data collected.</p>
-<p>Here are some of the things I&rsquo;d like to track:</p>
-<ul>
-<li>How many users visited my website, broken down by page</li>
-<li>How long does a user stay?</li>
-<li>How much data is transmitted?</li>
-<li>How well does the page perform?</li>
-</ul>
-<p>Since I work at Grafana, I am biased towards using <a href="https://grafana.com/oss/faro/">Grafana Faro</a>.</p> </p>
-        
-    </div>
-</div>
-    
 
     
 <div class="pagination">
@@ -328,7 +375,7 @@ In the past I&rsquo;ve used Google Analytics, which I&rsquo;m opting not to use 
     </div>
     <div class="page-number">
         <p>
-            1/2
+            1/3
         </p>
     </div>
     <div class="pagination-control">

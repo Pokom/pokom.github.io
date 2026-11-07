@@ -1,68 +1,101 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Home on Mark Poko</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content in Home on Mark Poko</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2026 03:29:59 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Effective Agentic Coding</title>
-      <link>http://localhost:1313/posts/effective-agentic-coding/</link>
-      <pubDate>Mon, 16 Mar 2026 03:29:59 -0400</pubDate>
-      <guid>http://localhost:1313/posts/effective-agentic-coding/</guid>
-      <description>&lt;p&gt;I want to start capturing different ways of using agentic tools effectively.&#xA;Most of the discourse I see online around agentic tools such as Claude/Codex/Gemini focus around how to generate code.&#xA;However, my personal experience has been that writing code is likely the last thing I end up using the tooling for.&#xA;After ~4 months of using agentic tools, I&amp;rsquo;ve started to recognize distinct workflows:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;research and investigate&lt;/li&gt;&#xA;&lt;li&gt;data gathering&lt;/li&gt;&#xA;&lt;li&gt;learn and experiment&lt;/li&gt;&#xA;&lt;li&gt;explore implementation details&lt;/li&gt;&#xA;&lt;li&gt;Finally, coding&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Let me explain each of these areas in a detail.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>One Month with Arch</title>
-      <link>http://localhost:1313/posts/arch/</link>
-      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/arch/</guid>
-      <description>&lt;p&gt;I had a laptop refresh at work and decided to try running &lt;a href=&#34;https://archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; for the first time.&#xA;I&amp;rsquo;ve used Ubuntu for workstations at a few other jobs, but not all of the places I worked supported this.&#xA;The challenge I had for myself was to get a basic setup within a weeks time and then decide if I wanted to switch back to Ubuntu.&#xA;A week turned into a month, but here&amp;rsquo;s some of my experiences.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>gRPC</title>
-      <link>http://localhost:1313/posts/grpc/</link>
-      <pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/grpc/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve heard of gRPC for quite some time, ran many applications in my life as a platform engineer that had gRPC endpoints, but never directly contributed to it.&#xA;gRPC is coming up more frequently now that I&amp;rsquo;m working as a backend engineer, and I feel like I need to dive deeper into the fundamentals.&#xA;The code is intuitive enough to update existing handlers.&#xA;But what happens if you need to create a new handler?&#xA;Or if you need to update how &lt;a href=&#34;github.com/grafana/synthetic-monitoring-agent/issues/738&#34;&gt;the client is initialized&lt;/a&gt;?&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Tyranny of Pencil and Paper</title>
-      <link>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</link>
-      <pubDate>Mon, 14 Jul 2025 20:57:06 -0400</pubDate>
-      <guid>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</guid>
-      <description>&lt;p&gt;Windsurfer being aqcuired by &lt;del&gt;OpenAI&lt;/del&gt; Cognition is making me reconsider the way I work.&#xA;I have been skeptical that LLM&amp;rsquo;s will be the next major revolution in technology.&#xA;Experience has provided enough context to have heard many other technologies claim they&amp;rsquo;ll usher in a new era of tech.&#xA;There&amp;rsquo;s still this small pit of fear that I am wrong on this and miss out on a potentially career ending mistake.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Faro</title>
-      <link>http://localhost:1313/posts/faro/</link>
-      <pubDate>Mon, 27 Jan 2025 21:09:42 -0500</pubDate>
-      <guid>http://localhost:1313/posts/faro/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;! I work at Grafana Labs and am writing this in my personal time to explore the product&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;I want to monitor traffic to this site and do it in a way that maintains privacy.&#xA;In the past I&amp;rsquo;ve used Google Analytics, which I&amp;rsquo;m opting not to use due to the amount of data collected.&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the things I&amp;rsquo;d like to track:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How many users visited my website, broken down by page&lt;/li&gt;&#xA;&lt;li&gt;How long does a user stay?&lt;/li&gt;&#xA;&lt;li&gt;How much data is transmitted?&lt;/li&gt;&#xA;&lt;li&gt;How well does the page perform?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since I work at Grafana, I am biased towards using &lt;a href=&#34;https://grafana.com/oss/faro/&#34;&gt;Grafana Faro&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Squarespace</title>
-      <link>http://localhost:1313/posts/squarespace/</link>
-      <pubDate>Fri, 17 Jan 2025 22:36:07 -0500</pubDate>
-      <guid>http://localhost:1313/posts/squarespace/</guid>
-      <description>&lt;p&gt;I use squarespace for &lt;code&gt;markpoko.dev&lt;/code&gt;&amp;rsquo;s DNS records, though not by choice.&#xA;Up until 2024, I had used Google domains to handle my DNS thingy.&#xA;At the time it made sense as I was diving deep into learning GCP.&#xA;There was a nice integration between Cloud Run and Google Domains, making it trivial to expose services over a DNS entry.&#xA;As Google &lt;a href=&#34;https://killedbygoogle.com/&#34;&gt;does&lt;/a&gt;, the &lt;a href=&#34;https://9to5google.com/2023/06/15/google-domains-squarespace/&#34;&gt;project was shut down and sold&lt;/a&gt; off to Squarespace.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Hello World</title>
-      <link>http://localhost:1313/posts/2025-01-17-hello-world/</link>
-      <pubDate>Fri, 17 Jan 2025 14:10:59 -0500</pubDate>
-      <guid>http://localhost:1313/posts/2025-01-17-hello-world/</guid>
-      <description>&lt;p&gt;Hello, world&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>http://localhost:1313/page/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/page/about/</guid>
-      <description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.&#xA;I work at &lt;a href=&#34;https://grafana.com/&#34;&gt;Grafana Labs&lt;/a&gt;, working on &lt;a href=&#34;https://grafana.com/products/cloud/synthetic-monitoring/&#34;&gt;Synthetic Monitoring&lt;/a&gt;.&#xA;that, I worked on the platform team building out tooling for cost management.&#xA;Some things I work on:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/synthetic-monitoring-agent&#34;&gt;synthetic-monitoring-agent&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/cloudcost-costexporter&#34;&gt;cloudcost-exporter&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/Kost&#34;&gt;kost&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Home on Mark Poko</title>
+		<link>http://localhost:1313/</link>
+		<description>Recent content in Home on Mark Poko</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 10 Oct 2026 13:27:31 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Product Engineering</title>
+				<link>http://localhost:1313/posts/the-case-against-product-engineering/</link>
+				<pubDate>Sat, 10 Oct 2026 13:27:31 +0000</pubDate>
+				<guid>http://localhost:1313/posts/the-case-against-product-engineering/</guid>
+				<description>&lt;p&gt;A new title has been popping in conversations that I&amp;rsquo;m not terribly familiar with: Product Engineering.&#xA;&lt;a href=&#34;https://trends.google.com/explore?q=Product%20Engineer&amp;amp;date=all&amp;amp;geo=US&#34;&gt;Google trends&lt;/a&gt; shows that it started to really pop up January 2022.&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;figure class=&#34;&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;div class=&#34;img-container&#34; style=&#34;--w: 1011; --h: 462;&#34;&gt;&#xD;&#xA;        &lt;img loading=&#34;lazy&#34; alt=&#34;Google Trends interest over time for &amp;ldquo;Product Engineer&amp;rdquo; in the US, 2004 to present&#34; src=&#34;http://localhost:1313/posts/the-case-against-product-engineering/google-trends.png&#34; width=&#34;1011&#34; height=&#34;462&#34;&gt;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&#xD;&#xA;    &#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s relatively new to me, so let&amp;rsquo;s see who&amp;rsquo;s written about it:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;PostHog: &lt;a href=&#34;https://posthog.com/product-engineer/what-is-a-product-engineer&#34;&gt;https://posthog.com/product-engineer/what-is-a-product-engineer&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;They quote incident.io, which I can&amp;rsquo;t actually find the source&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://posthog.com/blog/why-product-engineering-is-so-fun&#34;&gt;https://posthog.com/blog/why-product-engineering-is-so-fun&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Shopify(2018): &lt;a href=&#34;https://sherifmansour.medium.com/product-engineers-f424da766871&#34;&gt;https://sherifmansour.medium.com/product-engineers-f424da766871&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Lee Robison(&lt;a href=&#34;https://leerob.com/product-engineers&#34;&gt;https://leerob.com/product-engineers&lt;/a&gt;)&lt;/li&gt;&#xA;&lt;li&gt;Pragmatic Engineer(2019): &lt;a href=&#34;https://blog.pragmaticengineer.com/the-product-minded-engineer/#tips-to-become-a-more-product-minded-engineer&#34;&gt;https://blog.pragmaticengineer.com/the-product-minded-engineer/#tips-to-become-a-more-product-minded-engineer&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;A lot went right, but a lot went wrong.&#xA;In my opinion, the biggest mistake made was thinking rebranding some roles as DevOps engineers without changing the underlying culture.&#xA;I write this to provide myself a framework that hopefully amplifies the lessons learned from DeVops practices, without going through the pain of having to explain a new job title/function/&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Proving Value in the Agentic Era</title>
+				<link>http://localhost:1313/posts/proving-value-in-the-agentic-era/</link>
+				<pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/proving-value-in-the-agentic-era/</guid>
+				<description>&lt;p&gt;A recent article came out from Uber where they burned through a years worth of budget in the first four months of the year.&#xA;The associated hackernews thread on is quite worthwhile to read through.&#xA;Agents, and agentic coding, has proven to be more divisive in 6 months than k8s has in almost a decade of it&amp;rsquo;s existence.&#xA;Proponents of it think the value is self explanatory and requires no further proof.&#xA;Nay sayers claim not only is the spend on tokens shameful, the resulting work requires 10x the time to clean up.&#xA;Like most things, the truth is somewhere between the two.&#xA;But there&amp;rsquo;s something really important that&amp;rsquo;s worthwhile considering: Could you prove today that agents have provided value in your day to day life?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Agentic Research</title>
+				<link>http://localhost:1313/posts/agentic-research/</link>
+				<pubDate>Thu, 09 Apr 2026 06:17:52 -0400</pubDate>
+				<guid>http://localhost:1313/posts/agentic-research/</guid>
+				<description>&lt;p&gt;In my previous post about &lt;a href=&#34;http://localhost:1313/posts/effective-agentic-coding/&#34;&gt;Effective Agentic Coding&lt;/a&gt;, I listed out five distinct workflows that I find myself falling into.&#xA;The first topic is using agents to researching topics.&#xA;For many folks, this can be shocking as agentics are exceptionally confident and will tell you what you would like.&#xA;They search the web faster and analyzing text and synthesizing it into something usable.&lt;/p&gt;&#xA;&lt;h2 class=&#34;heading&#34; id=&#34;first-must-come-the-problem&#34;&gt;&#xD;&#xA;  First must come the problem&#xD;&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#first-must-come-the-problem&#34;&gt;#&lt;/a&gt;&#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;I work on the &lt;a href=&#34;https://grafana.com/docs/grafana-cloud/testing/synthetic-monitoring/&#34;&gt;Synthetic Monitoring&lt;/a&gt; product which started offering browser checks about a year ago(May 2025).&#xA;Browser checks had a healthy adoption rate, and with that has come growing pains.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Claude In Balders Gate 3</title>
+				<link>http://localhost:1313/posts/claude-in-bg3/</link>
+				<pubDate>Mon, 16 Mar 2026 03:29:59 -0400</pubDate>
+				<guid>http://localhost:1313/posts/claude-in-bg3/</guid>
+				<description>&lt;p&gt;This is very clearly in the &amp;ldquo;But why?&amp;rdquo; category of things I&amp;rsquo;ve done, but follow me for a minute.&#xA;Most days I only end up have a few hours total of spare time for any of my hobbies.&#xA;This makes it hard for me to invest the amount of time I used to into games.&#xA;Balders Gate 3 is&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Effective Agentic Coding</title>
+				<link>http://localhost:1313/posts/effective-agentic-coding/</link>
+				<pubDate>Mon, 16 Mar 2026 03:29:59 -0400</pubDate>
+				<guid>http://localhost:1313/posts/effective-agentic-coding/</guid>
+				<description>&lt;p&gt;I want to start capturing different ways of using agentic tools effectively.&#xA;Most of the discourse I see online around agentic tools such as Claude/Codex/Gemini focus around how to generate code.&#xA;However, my personal experience has been that writing code is likely the last thing I end up using the tooling for.&#xA;After ~4 months of using agentic tools, I&amp;rsquo;ve started to recognize distinct workflows:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;research and investigate&lt;/li&gt;&#xA;&lt;li&gt;data gathering&lt;/li&gt;&#xA;&lt;li&gt;learn and experiment&lt;/li&gt;&#xA;&lt;li&gt;explore implementation details&lt;/li&gt;&#xA;&lt;li&gt;Finally, coding&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Let me explain each of these areas in a detail.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>One Month with Arch</title>
+				<link>http://localhost:1313/posts/arch/</link>
+				<pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/arch/</guid>
+				<description>&lt;p&gt;I had a laptop refresh at work and decided to try running &lt;a href=&#34;https://archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; for the first time.&#xA;I&amp;rsquo;ve used Ubuntu for workstations at a few other jobs, but not all of the places I worked supported this.&#xA;The challenge I had for myself was to get a basic setup within a weeks time and then decide if I wanted to switch back to Ubuntu.&#xA;A week turned into a month, but here&amp;rsquo;s some of my experiences.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>gRPC</title>
+				<link>http://localhost:1313/posts/grpc/</link>
+				<pubDate>Wed, 23 Jul 2025 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/grpc/</guid>
+				<description>&lt;p&gt;I&amp;rsquo;ve heard of gRPC for quite some time, ran many applications in my life as a platform engineer that had gRPC endpoints, but never directly contributed to it.&#xA;gRPC is coming up more frequently now that I&amp;rsquo;m working as a backend engineer, and I feel like I need to dive deeper into the fundamentals.&#xA;The code is intuitive enough to update existing handlers.&#xA;But what happens if you need to create a new handler?&#xA;Or if you need to update how &lt;a href=&#34;github.com/grafana/synthetic-monitoring-agent/issues/738&#34;&gt;the client is initialized&lt;/a&gt;?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Tyranny of Pencil and Paper</title>
+				<link>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</link>
+				<pubDate>Mon, 14 Jul 2025 20:57:06 -0400</pubDate>
+				<guid>http://localhost:1313/posts/tyranny-of-pencil-and-paper/</guid>
+				<description>&lt;p&gt;Windsurfer being aqcuired by &lt;del&gt;OpenAI&lt;/del&gt; Cognition is making me reconsider the way I work.&#xA;I have been skeptical that LLM&amp;rsquo;s will be the next major revolution in technology.&#xA;Experience has provided enough context to have heard many other technologies claim they&amp;rsquo;ll usher in a new era of tech.&#xA;There&amp;rsquo;s still this small pit of fear that I am wrong on this and miss out on a potentially career ending mistake.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Faro</title>
+				<link>http://localhost:1313/posts/faro/</link>
+				<pubDate>Mon, 27 Jan 2025 21:09:42 -0500</pubDate>
+				<guid>http://localhost:1313/posts/faro/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;! I work at Grafana Labs and am writing this in my personal time to explore the product&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;I want to monitor traffic to this site and do it in a way that maintains privacy.&#xA;In the past I&amp;rsquo;ve used Google Analytics, which I&amp;rsquo;m opting not to use due to the amount of data collected.&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the things I&amp;rsquo;d like to track:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How many users visited my website, broken down by page&lt;/li&gt;&#xA;&lt;li&gt;How long does a user stay?&lt;/li&gt;&#xA;&lt;li&gt;How much data is transmitted?&lt;/li&gt;&#xA;&lt;li&gt;How well does the page perform?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since I work at Grafana, I am biased towards using &lt;a href=&#34;https://grafana.com/oss/faro/&#34;&gt;Grafana Faro&lt;/a&gt;.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Squarespace</title>
+				<link>http://localhost:1313/posts/squarespace/</link>
+				<pubDate>Fri, 17 Jan 2025 22:36:07 -0500</pubDate>
+				<guid>http://localhost:1313/posts/squarespace/</guid>
+				<description>&lt;p&gt;I use squarespace for &lt;code&gt;markpoko.dev&lt;/code&gt;&amp;rsquo;s DNS records, though not by choice.&#xA;Up until 2024, I had used Google domains to handle my DNS thingy.&#xA;At the time it made sense as I was diving deep into learning GCP.&#xA;There was a nice integration between Cloud Run and Google Domains, making it trivial to expose services over a DNS entry.&#xA;As Google &lt;a href=&#34;https://killedbygoogle.com/&#34;&gt;does&lt;/a&gt;, the &lt;a href=&#34;https://9to5google.com/2023/06/15/google-domains-squarespace/&#34;&gt;project was shut down and sold&lt;/a&gt; off to Squarespace.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Hello World</title>
+				<link>http://localhost:1313/posts/2025-01-17-hello-world/</link>
+				<pubDate>Fri, 17 Jan 2025 14:10:59 -0500</pubDate>
+				<guid>http://localhost:1313/posts/2025-01-17-hello-world/</guid>
+				<description>&lt;p&gt;Hello, world&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>About</title>
+				<link>http://localhost:1313/page/about/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/page/about/</guid>
+				<description>&lt;p&gt;Hello there, welcome to my small part of the internet where in theory I should be writing about things I enjoy.&#xA;I work at &lt;a href=&#34;https://grafana.com/&#34;&gt;Grafana Labs&lt;/a&gt;, working on &lt;a href=&#34;https://grafana.com/products/cloud/synthetic-monitoring/&#34;&gt;Synthetic Monitoring&lt;/a&gt;.&#xA;that, I worked on the platform team building out tooling for cost management.&#xA;Some things I work on:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/synthetic-monitoring-agent&#34;&gt;synthetic-monitoring-agent&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/cloudcost-costexporter&#34;&gt;cloudcost-exporter&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/grafana/Kost&#34;&gt;kost&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -71,6 +71,10 @@
     
 
 
+   
+    
+
+
 
 
 </head>
@@ -107,6 +111,16 @@
             version: "1.0.0",
             environment: "production",
           },
+          ignoreErrors: [
+            
+            /^ResizeObserver loop limit exceeded$/,
+            /^ResizeObserver loop completed with undelivered notifications$/,
+            
+            /^Script error\.$/,
+            
+            /chrome-extension:\/\//,
+            /moz-extension:\/\//,
+          ],
         });
 
         
